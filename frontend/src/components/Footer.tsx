@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
               <li>Shop Online</li>
               <li>Earings</li>
               <li>Necklaces</li>
-              <li>Bracelaces</li>
+              <li>Bracelets</li>
               <li>Rings</li>
             </ul>
           </Col>

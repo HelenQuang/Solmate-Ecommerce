@@ -241,11 +241,11 @@ sup {
   top: -0.5em;
 }
 a {
-  color: #485785;
-  text-decoration: underline;
+  color: #271a0b;
+  text-decoration: none;
 }
 a:hover {
-  color: #39456b;
+  color: #1e1408;
 }
 a:not([href]):not([class]),
 a:not([href]):not([class]):hover {
@@ -2812,7 +2812,7 @@ textarea.form-control.is-invalid {
   display: inline-block;
   font-weight: 600;
   line-height: 1.5;
-  color: #7b8ab8;
+  color: #271a0b;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -2823,8 +2823,8 @@ textarea.form-control.is-invalid {
   user-select: none;
   background-color: transparent;
   border: 0 solid transparent;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1.4rem;
   border-radius: 50rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -4081,12 +4081,11 @@ fieldset:disabled .btn {
 }
 
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+  margin-bottom: 1rem;
+  font-family: "Pacifico";
+  font-size: 2.5rem;
 }
 .navbar-nav {
   display: -ms-flexbox;
@@ -4524,8 +4523,6 @@ fieldset:disabled .btn {
 }
 .navbar-light .navbar-brand {
   color: #271a0b;
-  font-family: "Pacifico";
-  font-size: 2.5rem;
 }
 .navbar-light .navbar-brand:focus,
 .navbar-light .navbar-brand:hover {
@@ -4604,7 +4601,7 @@ fieldset:disabled .btn {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #e4ebf5;
+  background-color: #fff;
   background-clip: border-box;
   border: 0 solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -4634,13 +4631,12 @@ fieldset:disabled .btn {
 .card-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 1.5rem 1.5rem;
+  padding: 1rem 1rem;
 }
 .card-title {
   margin-bottom: 0.5rem;
 }
 .card-subtitle {
-  margin-top: -0.25rem;
   margin-bottom: 0;
 }
 .card-text:last-child {
@@ -7641,7 +7637,7 @@ fieldset:disabled .btn {
 }
 .text-muted {
   --bs-text-opacity: 1;
-  color: #adb6d3 !important;
+  color: #848484 !important;
 }
 .text-black-50 {
   --bs-text-opacity: 1;
@@ -10571,12 +10567,14 @@ fieldset:disabled .btn {
 }
 .btn {
   position: relative;
-  color: #7b8ab8;
-  border-radius: 50rem;
-  background-color: #d9e3f1;
+  color: #271a0b;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100rem;
+  background-color: #fff2e3;
   border: none;
-  box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.4);
+  box-shadow: 5px 5px 10px rgb(54 54 55 / 20%),
+    -5px -5px 10px rgb(255 255 255 / 40%);
   transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
 }

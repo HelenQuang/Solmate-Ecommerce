@@ -1,9 +1,53 @@
-main {
-  height: 90vh;
-}
 /* ***************HEADER************** */
 .separator-bottom {
   border-bottom: 1px solid #271a0b21;
+}
+
+.nav-right {
+  border-left: 1px solid #271a0b21;
+}
+
+.nav-left {
+  border-right: 1px solid #271a0b21;
+}
+
+.btn-header {
+  position: relative;
+  color: #271a0b;
+  width: 3rem;
+  height: 3rem;
+  margin-left: 1.5rem;
+  border-radius: 100rem;
+  background-color: #fff2e3;
+  border: none;
+  box-shadow: 5px 5px 10px rgb(54 54 55 / 20%),
+    -5px -5px 10px rgb(255 255 255 / 40%);
+  transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.btn-header:focus {
+  color: #271a0b;
+}
+
+.btn-header:active,
+.btn-header:active:focus,
+.btn-header:focus,
+.btn-header:hover {
+  background-color: #f8dfc3;
+  border: none;
+  box-shadow: 5px 5px 10px rgb(54 54 55 / 20%),
+    -5px -5px 10px rgb(255 255 255 / 40%);
+  transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
+  color: #271a0b;
+}
+
+/* ***************GUARANTEE************** */
+.guarantee {
+  background-color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 /* ***************FOOTER************** */
@@ -16,6 +60,7 @@ main {
   list-style: none;
   font-size: 1.4rem;
   color: #271a0bc8;
+  cursor: pointer;
 }
 
 .footer-menu-list > :first-child {

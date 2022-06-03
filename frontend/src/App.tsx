@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage";
 
 const App: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Container>
-          <h1>WELCOME TO SOLMATE</h1>
+          <HomePage />
         </Container>
       </main>
       <Footer />
