@@ -3577,10 +3577,9 @@ fieldset:disabled .btn {
   position: absolute;
   z-index: 1000;
   display: none;
-  min-width: 10rem;
-  padding: 0.5rem 0;
+  min-width: 8rem;
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #7b8ab8;
   text-align: left;
   list-style: none;
@@ -3776,23 +3775,23 @@ fieldset:disabled .btn {
   padding: 0.25rem 1rem;
   clear: both;
   font-weight: 400;
-  color: #7b8ab8;
+  color: #271a0b;
   text-align: inherit;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.415);
   border: 0;
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
-  color: #444b40;
-  background-color: transparent;
+  color: #b69169;
+  background-color: rgba(255, 255, 255, 0.415);
 }
 .dropdown-item.active,
 .dropdown-item:active {
-  color: #fff;
+  color: #b69169;
   text-decoration: none;
-  background-color: #378dfc;
+  background-color: rgba(255, 255, 255, 0.415);
 }
 .dropdown-item.disabled,
 .dropdown-item:disabled {
@@ -4475,7 +4474,7 @@ fieldset:disabled .btn {
   position: absolute;
 }
 .navbar-expand .navbar-nav .nav-link {
-  padding-right: 2.5rem;
+  padding-right: 2rem;
   padding-left: 0rem;
 }
 .navbar-expand .navbar-nav-scroll {

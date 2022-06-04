@@ -50,6 +50,14 @@
   font-size: 1.2rem;
 }
 
+.rating {
+  color: rgb(230, 169, 2);
+}
+
+.rating-text {
+  margin: 0.7rem;
+}
+
 /* ***************FOOTER************** */
 
 .separator-top {

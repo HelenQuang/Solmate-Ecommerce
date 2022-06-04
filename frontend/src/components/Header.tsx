@@ -1,5 +1,6 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import {
   IoSearchOutline,
   IoHeartOutline,
@@ -13,7 +14,24 @@ const Header: React.FC = () => {
       <Navbar bg="light" variant="light">
         <Container className="separator-bottom">
           <Nav className="nav-left">
-            <Nav.Link href="/shop">Shop</Nav.Link>
+            <NavDropdown title="Shop" id="navbarScrollingDropdown">
+              <LinkContainer to="/shop/bracelets">
+                <NavDropdown.Item>Bracelets</NavDropdown.Item>
+              </LinkContainer>
+
+              <LinkContainer to="/shop/earings">
+                <NavDropdown.Item>Earings</NavDropdown.Item>
+              </LinkContainer>
+
+              <LinkContainer to="/shop/necklaces">
+                <NavDropdown.Item>Necklaces</NavDropdown.Item>
+              </LinkContainer>
+
+              <LinkContainer to="/shop/rings">
+                <NavDropdown.Item>Rings</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
+
             <Nav.Link href="/gift">Gift</Nav.Link>
             <Nav.Link href="/lookbook">Lookbook</Nav.Link>
             <Nav.Link href="/discover">Discover</Nav.Link>
@@ -23,15 +41,24 @@ const Header: React.FC = () => {
             <button type="button" className="btn-header">
               <IoSearchOutline />
             </button>
-            <button type="button" className="btn-header">
-              <IoHeartOutline />
-            </button>
-            <button type="button" className="btn-header">
-              <IoPersonOutline />
-            </button>
-            <button type="button" className="btn-header">
-              <IoCartOutline />
-            </button>
+
+            <LinkContainer to="/wishlist">
+              <button type="button" className="btn-header">
+                <IoHeartOutline />
+              </button>
+            </LinkContainer>
+
+            <LinkContainer to="/login">
+              <button type="button" className="btn-header">
+                <IoPersonOutline />
+              </button>
+            </LinkContainer>
+
+            <LinkContainer to="/cart">
+              <button type="button" className="btn-header">
+                <IoCartOutline />
+              </button>
+            </LinkContainer>
           </Nav>
         </Container>
       </Navbar>

@@ -26,9 +26,9 @@ const products = [
     name: "Fantasia Earings",
     image: "/ProductsImg/Earings/fantasia1.png",
     description: "The elegant silver earings with a touch of stone",
-    category: "earingss",
+    category: "earings",
     price: 28.9,
-    rating: 4.8,
+    rating: 5,
     numReviews: 5,
   },
   {
@@ -38,7 +38,7 @@ const products = [
     description: "The elegant silver earings with a touch of stone",
     category: "earings",
     price: 27.8,
-    rating: 4.7,
+    rating: 4.5,
     numReviews: 7,
   },
   {
@@ -48,7 +48,7 @@ const products = [
     description: "The elegant silver necklece with a touch of stone",
     category: "necklaces",
     price: 129.7,
-    rating: 4.8,
+    rating: 4,
     numReviews: 6,
   },
   {
@@ -68,7 +68,7 @@ const products = [
     description: "The elegant silver ring with a touch of stone",
     category: "rings",
     price: 32.5,
-    rating: 4.9,
+    rating: 4.5,
     numReviews: 7,
   },
   {
@@ -78,7 +78,7 @@ const products = [
     description: "The elegant silver ring with a touch of stone",
     category: "rings",
     price: 33.5,
-    rating: 4.9,
+    rating: 4.5,
     numReviews: 9,
   },
 ];
