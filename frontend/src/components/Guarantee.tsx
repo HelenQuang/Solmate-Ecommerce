@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa";
 
 const Guarantee: React.FC = () => {
   return (
-    <Row className="guarantee my-3 mx-0 ">
+    <Row className="guarantee mt-5 mb-3 mx-0 ">
       <Col className="nav-left pt-2">
         <FaRegStar />
         <p className="mb-0">3 years warranty</p>

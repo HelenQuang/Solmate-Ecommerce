@@ -23,6 +23,10 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/shop/:category" element={<CategoryPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            <Route
+              path="/shop/:category/product/:id"
+              element={<ProductPage />}
+            />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/login" element={<LogInPage />} />
             <Route path="/wishlist" element={<WishlistPage />} />

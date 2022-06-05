@@ -32,11 +32,18 @@ const Header: React.FC = () => {
               </LinkContainer>
             </NavDropdown>
 
-            <Nav.Link href="/gift">Gift</Nav.Link>
-            <Nav.Link href="/lookbook">Lookbook</Nav.Link>
-            <Nav.Link href="/discover">Discover</Nav.Link>
+            <LinkContainer to="/lookbook">
+              <Nav.Link>Lookbook</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/discover">
+              <Nav.Link>Discover</Nav.Link>
+            </LinkContainer>
           </Nav>
-          <Navbar.Brand href="/">Solmate</Navbar.Brand>
+
+          <LinkContainer to="/">
+            <Navbar.Brand>Solmate</Navbar.Brand>
+          </LinkContainer>
+
           <Nav className="nav-right">
             <button type="button" className="btn-header">
               <IoSearchOutline />
