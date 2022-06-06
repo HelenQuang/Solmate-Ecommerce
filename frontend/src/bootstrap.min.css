@@ -188,10 +188,7 @@ address {
   font-style: normal;
   line-height: inherit;
 }
-ol,
-ul {
-  padding-left: 2rem;
-}
+
 dl,
 ol,
 ul {
@@ -1083,7 +1080,7 @@ progress {
   .col-md-5 {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    width: 41.666667%;
+    width: 50%;
   }
   .col-md-6 {
     -ms-flex: 0 0 auto;
@@ -3965,7 +3962,7 @@ fieldset:disabled .btn {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #7b8ab8;
+  color: #271a0b;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
@@ -3977,10 +3974,10 @@ fieldset:disabled .btn {
 }
 .nav-link:focus,
 .nav-link:hover {
-  color: #7b8ab8;
+  color: #271a0b;
 }
 .nav-link.disabled {
-  color: #adb6d3;
+  color: #271a0b2b;
   pointer-events: none;
   cursor: default;
 }
@@ -4006,9 +4003,8 @@ fieldset:disabled .btn {
 }
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: #fff;
-  background-color: #378dfc;
-  border-color: #dee2e6 #dee2e6 #378dfc;
+  color: #271a0b;
+  /* border: solid 0.5px #271a0ba9; */
 }
 .nav-tabs .dropdown-menu {
   margin-top: 0;
@@ -4870,11 +4866,12 @@ fieldset:disabled .btn {
 .breadcrumb-item + .breadcrumb-item::before {
   float: left;
   padding-right: 0.5rem;
-  color: #adb6d3;
+  color: #271a0b;
   content: var(--bs-breadcrumb-divider, "/");
 }
 .breadcrumb-item.active {
-  color: #485785;
+  color: #271a0b;
+  font-weight: 700;
 }
 .pagination {
   display: -ms-flexbox;
@@ -5348,12 +5345,13 @@ fieldset:disabled .btn {
 }
 .list-group-flush {
   border-radius: 0;
+  width: 80%;
 }
 .list-group-flush > .list-group-item {
   border-width: 0 0 0;
 }
 .list-group-flush > .list-group-item:last-child {
-  border-bottom-width: 0;
+  padding-bottom: 2rem;
 }
 .list-group-item-primary {
   color: #215597;
@@ -7323,19 +7321,19 @@ fieldset:disabled .btn {
   margin-bottom: 0 !important;
 }
 .mb-1 {
-  margin-bottom: 0.25rem !important;
-}
-.mb-2 {
-  margin-bottom: 0.5rem !important;
-}
-.mb-3 {
   margin-bottom: 1rem !important;
 }
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
 .mb-4 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 4rem !important;
 }
 .mb-5 {
-  margin-bottom: 3rem !important;
+  margin-bottom: 5rem !important;
 }
 .mb-auto {
   margin-bottom: auto !important;
@@ -11040,28 +11038,23 @@ fieldset:disabled .btn {
   backdrop-filter: blur(3px);
 }
 .nav-tabs {
-  background-color: #d9e3f1;
   border: none;
-  box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.4);
-  transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
-  border-radius: 0.25rem;
+  width: 80%;
 }
 .nav-tabs .nav-item {
   box-shadow: 1px 0 rgba(55, 94, 148, 0.1);
 }
-.nav-tabs .nav-item:first-child .nav-link {
+/* .nav-tabs .nav-item:first-child .nav-link {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
 .nav-tabs .nav-item:last-child .nav-link {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
-}
+} */
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+  border-bottom: solid 0.5px #271a0ba9;
 }
 .nav-pills {
   background-color: #d9e3f1;
@@ -11077,13 +11070,8 @@ fieldset:disabled .btn {
   box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .breadcrumb {
-  background-color: #d9e3f1;
+  background-color: var(--bs-body-bg);
   border: none;
-  box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.4);
-  transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
-  border-radius: 0.25rem;
 }
 .pagination {
   background-color: #d9e3f1;
@@ -11293,9 +11281,9 @@ fieldset:disabled .btn {
   color: inherit;
 }
 .list-group {
-  background-color: #e4ebf5;
-  box-shadow: inset 2px 2px 6px rgba(109, 114, 121, 0.2),
-    inset -3px -2px 4px rgba(255, 255, 255, 0.2);
+  /* background-color: #fff; */
+  /* box-shadow: inset 2px 2px 6px rgba(109, 114, 121, 0.2),
+    inset -3px -2px 4px rgba(255, 255, 255, 0.2); */
 }
 .list-group-item {
   background-color: transparent;

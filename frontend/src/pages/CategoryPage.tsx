@@ -1,18 +1,17 @@
 import React from "react";
 import products from "../components/products";
 import Product from "../components/Product";
-import { useParams } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
-
 import Guarantee from "../components/Guarantee";
 
-const CategoryPage: React.FC = () => {
-  const params = useParams();
-  const paramCategory = params.category;
+import { useParams } from "react-router-dom";
+import { Row, Col, Breadcrumb } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
-  const product = products.filter(
-    (product) => product.category === paramCategory
-  );
+const CategoryPage: React.FC = () => {
+  const { category } = useParams();
+  const paramCategory = category!.charAt(0).toUpperCase() + category!.slice(1);
+
+  const product = products.filter((product) => product.category === category);
 
   const earingDescription = (
     <h2 className="category-description">
@@ -41,11 +40,18 @@ const CategoryPage: React.FC = () => {
 
   return (
     <>
-      <h1 className="category-title">{paramCategory}</h1>
-      {paramCategory === "bracelets" && braceletDescription}
-      {paramCategory === "necklaces" && necklaceDescription}
-      {paramCategory === "rings" && ringDescription}
-      {paramCategory === "earings" && earingDescription}
+      <Breadcrumb>
+        <LinkContainer to="/">
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+        </LinkContainer>
+
+        <Breadcrumb.Item active>{paramCategory}</Breadcrumb.Item>
+      </Breadcrumb>
+      <h1 className="category-title">{category}</h1>
+      {category === "bracelets" && braceletDescription}
+      {category === "necklaces" && necklaceDescription}
+      {category === "rings" && ringDescription}
+      {category === "earings" && earingDescription}
       <Row>
         {product.map((product) => (
           <Col key={product._id} sm={6} md={4} lg={3}>

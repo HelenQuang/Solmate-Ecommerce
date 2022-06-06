@@ -60,7 +60,6 @@
   margin: 0.7rem;
 }
 
-/* ***************CATEGORY************** */
 .category-title {
   text-align: center;
   text-transform: uppercase;
@@ -77,7 +76,67 @@
   font-family: "Maven Pro";
 }
 
+/* ***************PRODUCT************** */
+.product-img {
+  background-color: #fff;
+  width: 70%;
+  margin-left: 5rem;
+}
+
+.heart-icon {
+  position: absolute;
+  left: 90%;
+  top: 25%;
+  font-weight: 700;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.extra-info {
+  font-family: "Maven Pro";
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.extra-info-li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.extra-info-icon {
+  margin-right: 1rem;
+}
+
+.btn-block {
+  background: #271a0b;
+  width: 100%;
+  color: #fff;
+  font-family: "Maven Pro";
+  font-weight: 700;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border: solid 0.5px #271a0ba9;
+}
+
+.btn-block:hover {
+  background: #fff;
+  color: #271a0b;
+  border: solid 0.5px #271a0ba9;
+}
+
+.extra-info-tabs {
+  font-family: "Maven Pro";
+}
+
 /* ***************FOOTER************** */
+footer {
+  background-color: #f8dfc3;
+  margin-top: 3rem;
+}
 
 .separator-top {
   border-top: 1px solid #271a0b21;
@@ -111,6 +170,10 @@
 .footer-cta-form {
   border: none;
   border-bottom: 1px solid #271a0b21;
-  background-color: #fff2e3;
+  background-color: #f8dfc3;
   font-size: 1.4rem;
+}
+
+.footer-cta-form:active {
+  border: none;
 }
