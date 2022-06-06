@@ -15,19 +15,19 @@ const Header: React.FC = () => {
         <Container className="separator-bottom">
           <Nav className="nav-left">
             <NavDropdown title="Shop" id="navbarScrollingDropdown">
-              <LinkContainer to="/shop/bracelets">
+              <LinkContainer to="/products/category/bracelets">
                 <NavDropdown.Item>Bracelets</NavDropdown.Item>
               </LinkContainer>
 
-              <LinkContainer to="/shop/earings">
+              <LinkContainer to="/products/category/earings">
                 <NavDropdown.Item>Earings</NavDropdown.Item>
               </LinkContainer>
 
-              <LinkContainer to="/shop/necklaces">
+              <LinkContainer to="/products/category/necklaces">
                 <NavDropdown.Item>Necklaces</NavDropdown.Item>
               </LinkContainer>
 
-              <LinkContainer to="/shop/rings">
+              <LinkContainer to="/products/category/rings">
                 <NavDropdown.Item>Rings</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>

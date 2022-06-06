@@ -21,10 +21,13 @@ const App: React.FC = () => {
         <Container>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/shop/:category" element={<CategoryPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
             <Route
-              path="/shop/:category/product/:id"
+              path="/products/category/:category"
+              element={<CategoryPage />}
+            />
+            <Route path="/products/id/:id" element={<ProductPage />} />
+            <Route
+              path="/products/category/:category/products/id/:id"
               element={<ProductPage />}
             />
             <Route path="/cart" element={<CartPage />} />

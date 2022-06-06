@@ -1,11 +1,24 @@
-import React from "react";
-import products from "../components/products";
+import React, { useState, useEffect } from "react";
 import Product from "../components/Product";
 import Guarantee from "../components/Guarantee";
+import { ProductInterface } from "../types/ProductInterface";
 
 import { Row, Col } from "react-bootstrap";
+import axios from "axios";
 
 const HomePage: React.FC = () => {
+  const [products, setProducts] = useState<ProductInterface[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get("/api/products");
+
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <h1>Our Latest Lookbook</h1>

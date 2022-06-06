@@ -1,10 +1,3 @@
-export enum categoryEnum {
-  bracelets = "bracelets",
-  earing = "earings",
-  necklaces = "necklaces",
-  rings = "rings",
-}
-
 export interface ProductInterface {
   _id: string;
   name: string;
@@ -12,6 +5,7 @@ export interface ProductInterface {
   description: string;
   category: string;
   price: number;
+  countInStock: number;
   rating: number;
   numReviews: number;
 }

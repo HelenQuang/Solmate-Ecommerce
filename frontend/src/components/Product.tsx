@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 const Product: React.FC<{ product: ProductInterface }> = ({ product }) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`product/${product._id}`}>
+      <Link to={`/products/id/${product._id}`}>
         <Card.Img src={product.image} variant="top" />
       </Link>
       <Card.Body>
-        <Link to={`product/${product._id}`}>
+        <Link to={`/products/id/${product._id}`}>
           <Card.Title>
             <h4>{product.name}</h4>
           </Card.Title>
