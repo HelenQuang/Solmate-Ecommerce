@@ -4,7 +4,7 @@ import Guarantee from "../components/Guarantee";
 import { ProductInterface } from "../types/ProductInterface";
 
 import { useParams } from "react-router-dom";
-import { Row, Col, Breadcrumb } from "react-bootstrap";
+import { Row, Col, Breadcrumb, Spinner } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
@@ -51,6 +51,7 @@ const CategoryPage: React.FC = () => {
 
   return (
     <>
+      {!products && <Spinner animation="grow" />}
       {products && (
         <>
           <Breadcrumb>
@@ -60,11 +61,14 @@ const CategoryPage: React.FC = () => {
 
             <Breadcrumb.Item active>{paramCategory}</Breadcrumb.Item>
           </Breadcrumb>
+
           <h1 className="category-title">{category}</h1>
+
           {category === "bracelets" && braceletDescription}
           {category === "necklaces" && necklaceDescription}
           {category === "rings" && ringDescription}
           {category === "earings" && earingDescription}
+
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={6} md={4} lg={3}>

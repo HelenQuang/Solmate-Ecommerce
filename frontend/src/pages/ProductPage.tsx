@@ -8,6 +8,7 @@ import {
   Breadcrumb,
   Tab,
   Tabs,
+  Spinner,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsSuitHeart } from "react-icons/bs";
@@ -39,6 +40,7 @@ const ProductPage: React.FC = () => {
 
   return (
     <>
+      {!product && <Spinner animation="grow" />}
       {product && (
         <>
           <Breadcrumb>

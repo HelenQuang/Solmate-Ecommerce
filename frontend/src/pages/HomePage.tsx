@@ -3,7 +3,7 @@ import Product from "../components/Product";
 import Guarantee from "../components/Guarantee";
 import { ProductInterface } from "../types/ProductInterface";
 
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 
 const HomePage: React.FC = () => {
@@ -25,13 +25,16 @@ const HomePage: React.FC = () => {
       <p>
         Discover a piece of jewellery that resonates with you on a deeper level
       </p>
-      <Row>
-        {products.map((product) => (
-          <Col key={product._id} sm={6} md={4} lg={3}>
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row>
+      {!products && <Spinner animation="grow" />}
+      {products && (
+        <Row>
+          {products.map((product) => (
+            <Col key={product._id} sm={6} md={4} lg={3}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      )}
       <Guarantee />
     </>
   );
