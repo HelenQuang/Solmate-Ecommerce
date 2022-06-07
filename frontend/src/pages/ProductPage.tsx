@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import {
   Row,
   Col,
-  Image,
   ListGroup,
   Breadcrumb,
   Tab,
   Tabs,
   Spinner,
+  Carousel,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsSuitHeart } from "react-icons/bs";
@@ -57,12 +57,17 @@ const ProductPage: React.FC = () => {
 
           <Row>
             <Col md={5}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                fluid
-                className="product-img"
-              />
+              <Carousel>
+                {product.image.map((imgSrc) => (
+                  <Carousel.Item key={imgSrc}>
+                    <img
+                      src={imgSrc}
+                      alt="Product slideshow"
+                      className="product-img"
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
             </Col>
 
             <Col md={5}>
@@ -133,7 +138,7 @@ const ProductPage: React.FC = () => {
               <ListGroup>
                 <ListGroup.Item>
                   <Tabs
-                    defaultActiveKey="profile"
+                    defaultActiveKey="story"
                     className="mb-2 extra-info-tabs"
                   >
                     <Tab
@@ -179,9 +184,8 @@ const ProductPage: React.FC = () => {
                         product blends retro-futuristic motifs with contemporary
                         elements. Geometric shapes mesh with staple elements to
                         create a jewelry piece envisioned to level up any
-                        outfit. Made of 925 Sterling Silver with 18K gold
-                        plating, this design will make you want to break the
-                        rules and play around.
+                        outfit. Made of 925 Sterling Silver, this design will
+                        make you want to break the rules and play around.
                       </p>
                     </Tab>
                   </Tabs>

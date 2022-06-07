@@ -8,7 +8,7 @@ const Product: React.FC<{ product: ProductInterface }> = ({ product }) => {
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/products/id/${product._id}`}>
-        <Card.Img src={product.image} variant="top" />
+        <Card.Img src={product.image[0]} variant="top" />
       </Link>
       <Card.Body>
         <Link to={`/products/id/${product._id}`}>
