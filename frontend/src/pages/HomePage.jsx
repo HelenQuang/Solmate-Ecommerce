@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import Product from "../components/Product";
@@ -19,7 +19,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Container>
       <h1>Our Latest Lookbook</h1>
       <p>
         Discover a piece of jewelry that resonates with you on a deeper level
@@ -38,7 +38,7 @@ const HomePage = () => {
       )}
 
       <Guarantee />
-    </>
+    </Container>
   );
 };
 

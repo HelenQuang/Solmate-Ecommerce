@@ -10,6 +10,7 @@ import {
   Tabs,
   Carousel,
   Form,
+  Container,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsSuitHeart } from "react-icons/bs";
@@ -23,7 +24,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const ProductPage = () => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const ProductPage = () => {
   };
 
   return (
-    <>
+    <Container>
       {loading && <Loader />}
       {!loading && error && <Message variant="danger">{error}</Message>}
       {!loading && product._id && (
@@ -132,7 +133,7 @@ const ProductPage = () => {
                       {product.countInStock > 0 && (
                         <li className="extra-info-li">
                           <Col>Quantity:</Col>
-                          <Col className="quantity-col">
+                          <Col>
                             <Form.Control
                               as="select"
                               value={quantity}
@@ -223,7 +224,7 @@ const ProductPage = () => {
           </Row>
         </>
       )}
-    </>
+    </Container>
   );
 };
 

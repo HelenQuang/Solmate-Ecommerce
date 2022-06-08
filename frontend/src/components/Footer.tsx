@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
         </Row>
         <Row>
           <Col className="text-center py-3 separator-top">
-            &copy; Solmate. All rights reserved.
+            &copy; Solmate. All rights reserved. Built by Ha Quang 2022.
           </Col>
         </Row>
       </Container>

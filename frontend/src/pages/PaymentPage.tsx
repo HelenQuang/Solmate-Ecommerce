@@ -1,7 +1,8 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const PaymentPage: React.FC = () => {
-  return <div>PaymentPage</div>;
+  return <Container>PaymentPage</Container>;
 };
 
 export default PaymentPage;

@@ -1,7 +1,8 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const OrderPage: React.FC = () => {
-  return <div>OrderPage</div>;
+  return <Container>OrderPage</Container>;
 };
 
 export default OrderPage;

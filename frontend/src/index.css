@@ -123,6 +123,7 @@
   padding: 0.5rem 0;
   cursor: pointer;
   border: solid 0.5px #271a0ba9;
+  border-radius: 0.5rem;
 }
 
 .btn-block:hover {
@@ -145,6 +146,11 @@
   font-family: "Maven Pro";
 }
 
+option {
+  text-align: center;
+  padding: 0 1.8rem;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
   .quantity-col {
     min-width: 350px;
@@ -153,6 +159,63 @@
   .quantity-col:nth-child(3) {
     margin: 20px 0 0 50%;
   }
+}
+
+/* ***************CART************** */
+.cart-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-family: "Maven Pro";
+  margin-bottom: 3rem;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Maven Pro";
+}
+
+.cart-item-details {
+  font-family: "Maven Pro";
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-description {
+  margin: auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.cart-btn {
+  background-color: #271a0b;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: solid 0.5px #271a0ba9;
+}
+
+.cart-btn:hover {
+  background: #fff;
+  color: #271a0b;
+  border: solid 0.5px #271a0ba9;
+}
+
+.delete {
+  background-color: var(--bs-body-bg);
+  color: #271a0b;
+  margin-bottom: 0.3rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.cart-card {
+  font-family: "Maven Pro";
+  text-align: left;
 }
 
 /* ***************FOOTER************** */

@@ -349,6 +349,7 @@ select {
 }
 select {
   word-wrap: normal;
+  text-align-last: center;
 }
 select:disabled {
   opacity: 1;
@@ -543,6 +544,7 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
+  background-color: #fff;
 }
 .img-thumbnail {
   padding: 0.25rem;
@@ -1983,22 +1985,18 @@ progress {
 }
 .form-control {
   display: block;
-  width: 30%;
-  padding: 0 1.8rem;
-  font-size: 1rem;
-  font-weight: 400;
+
+  padding: 0.2rem 1.8rem;
+
+  text-align: center;
+
   line-height: 1.5;
   color: var(--bs-body-color);
   background-color: rgba(255, 255, 255, 0.603);
   background-clip: padding-box;
   border: 1px solid var(--bs-body-color);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+
   border-radius: 0.25rem;
-  /* box-shadow: inset 2px 2px 8px #271a0b2b,
-    inset -3px -2px 5px rgba(255, 255, 255, 0.8);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -5162,17 +5160,9 @@ fieldset:disabled .btn {
   padding: 0.5rem 1rem;
   color: #212529;
   text-decoration: none;
-  background-color: #e4ebf5;
-  border: 0 solid rgba(0, 0, 0, 0.125);
+  border: 0px solid rgba(0, 0, 0, 0.125);
 }
-.list-group-item:first-child {
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-}
-.list-group-item:last-child {
-  border-bottom-right-radius: inherit;
-  border-bottom-left-radius: inherit;
-}
+
 .list-group-item.disabled,
 .list-group-item:disabled {
   color: #adb6d3;
@@ -5342,7 +5332,7 @@ fieldset:disabled .btn {
 }
 .list-group-flush {
   border-radius: 0;
-  width: 80%;
+  width: 100%;
 }
 .list-group-flush > .list-group-item {
   border-width: 0 0 0;

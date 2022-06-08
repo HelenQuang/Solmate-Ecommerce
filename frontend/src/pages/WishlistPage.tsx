@@ -1,7 +1,8 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const WishlistPage: React.FC = () => {
-  return <div>WishlistPage</div>;
+  return <Container>WishlistPage</Container>;
 };
 
 export default WishlistPage;

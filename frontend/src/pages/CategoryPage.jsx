@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import { listProductCategory } from "../actions/productAction";
 
 import { useParams } from "react-router-dom";
-import { Row, Col, Breadcrumb } from "react-bootstrap";
+import { Row, Col, Breadcrumb, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -47,7 +47,7 @@ const CategoryPage = () => {
   );
 
   return (
-    <>
+    <Container>
       {loading && <Loader />}
       {loading && error && <Message variant="danger">{error}</Message>}
       {!loading && products && (
@@ -79,7 +79,7 @@ const CategoryPage = () => {
           <Guarantee />
         </>
       )}
-    </>
+    </Container>
   );
 };
 

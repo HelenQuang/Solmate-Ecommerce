@@ -61,7 +61,7 @@ const Header: React.FC = () => {
               </button>
             </LinkContainer>
 
-            <LinkContainer to="/cart">
+            <LinkContainer to="/cart/:id">
               <button type="button" className="btn-header">
                 <IoCartOutline />
               </button>
