@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Product from "../components/Product";
 import Guarantee from "../components/Guarantee";
-import { ProductInterface } from "../types/ProductInterface";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import { listProductCategory } from "../actions/productAction";
 
 import { useParams } from "react-router-dom";
-import { Row, Col, Breadcrumb, Spinner } from "react-bootstrap";
+import { Row, Col, Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
-const CategoryPage: React.FC = () => {
+const CategoryPage = () => {
   const { category } = useParams();
-  const [products, setProducts] = useState<ProductInterface[]>([]);
+  const dispatch = useDispatch();
+
+  const productCategory = useSelector((state) => state.productCategory);
+  const { loading, error, products } = productCategory;
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get(`/api/products/category/${category}`);
-
-      setProducts(data);
-    };
-
-    fetchProducts();
-  }, [category]);
-
-  const paramCategory = category!.charAt(0).toUpperCase() + category!.slice(1);
+    dispatch(listProductCategory(category));
+  }, [category, dispatch]);
 
   const earingDescription = (
     <h2 className="category-description">
@@ -51,15 +48,18 @@ const CategoryPage: React.FC = () => {
 
   return (
     <>
-      {!products && <Spinner animation="grow" />}
-      {products && (
+      {loading && <Loader />}
+      {loading && error && <Message variant="danger">{error}</Message>}
+      {!loading && products && (
         <>
           <Breadcrumb>
             <LinkContainer to="/">
               <Breadcrumb.Item>Home</Breadcrumb.Item>
             </LinkContainer>
 
-            <Breadcrumb.Item active>{paramCategory}</Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </Breadcrumb.Item>
           </Breadcrumb>
 
           <h1 className="category-title">{category}</h1>

@@ -5040,7 +5040,7 @@ fieldset:disabled .btn {
   color: #7a5d03;
 }
 .alert-danger {
-  color: #891617;
+  color: #271a0b;
   background-color: #fad3d4;
   border-color: #f7bebe;
 }
@@ -6335,8 +6335,7 @@ fieldset:disabled .btn {
 }
 .spinner-grow {
   display: inline-block;
-  width: 2rem;
-  height: 2rem;
+
   vertical-align: -0.125em;
   background-color: currentColor;
   border-radius: 50%;

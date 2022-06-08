@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
   Col,
@@ -7,7 +8,6 @@ import {
   Breadcrumb,
   Tab,
   Tabs,
-  Spinner,
   Carousel,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -15,33 +15,28 @@ import { BsSuitHeart } from "react-icons/bs";
 import { TbRotateClockwise } from "react-icons/tb";
 import { IoAirplaneOutline, IoDiamondOutline } from "react-icons/io5";
 import { RiLock2Line } from "react-icons/ri";
-import axios from "axios";
 
 import Rating from "../components/Rating";
-import { ProductInterface } from "../types/ProductInterface";
+import { listProductDetails } from "../actions/productAction";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
-const ProductPage: React.FC = () => {
+const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState<ProductInterface>();
+  const dispatch = useDispatch();
+
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/id/${id}`);
-
-      setProduct(data);
-    };
-
-    fetchProduct();
-  }, [id]);
-
-  const productCategory = product
-    ? product.category.charAt(0).toUpperCase() + product.category.slice(1)
-    : "";
+    dispatch(listProductDetails(id));
+  }, [dispatch, id]);
 
   return (
     <>
-      {!product && <Spinner animation="grow" />}
-      {product && (
+      {loading && <Loader />}
+      {!loading && error && <Message variant="danger">{error}</Message>}
+      {!loading && product && (
         <>
           <Breadcrumb>
             <LinkContainer to="/">
@@ -49,7 +44,10 @@ const ProductPage: React.FC = () => {
             </LinkContainer>
 
             <LinkContainer to={`/products/category/${product.category}`}>
-              <Breadcrumb.Item>{productCategory}</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                {product.category.charAt(0).toUpperCase() +
+                  product.category.slice(1)}
+              </Breadcrumb.Item>
             </LinkContainer>
 
             <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
@@ -84,7 +82,7 @@ const ProductPage: React.FC = () => {
                 <ListGroup.Item>
                   <Rating
                     value={product.rating}
-                    text={`${product?.numReviews} reviews`}
+                    text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
               </ListGroup>
