@@ -4,14 +4,22 @@ import {
   productDetailsReducer,
   productCategoryReducer,
 } from "./reducers/productReducer";
+import { cartReducer } from "./reducers/cartReducer";
 
 const reducer = {
   productList: productListReducer,
   productDetails: productDetailsReducer,
   productCategory: productCategoryReducer,
+  cart: cartReducer,
 };
 
-const initialState = {};
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? localStorage.getItem("cartItems")
+  : [];
+
+const initialState = {
+  cart: { cartItems: cartItemsFromStorage },
+};
 
 const store = configureStore({
   reducer,
