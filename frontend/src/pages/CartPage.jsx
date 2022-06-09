@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   Row,
   Col,
@@ -9,14 +9,16 @@ import {
   Form,
   Container,
   Card,
+  Breadcrumb,
 } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 
 const CartPage = () => {
   const { id } = useParams();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const quantity = new URLSearchParams(location.search).get("quantity");
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ const CartPage = () => {
   }, [dispatch, id, quantity]);
 
   const removeCartHandler = (itemId) => {
-    console.log("remove");
+    dispatch(removeFromCart(itemId));
   };
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -41,13 +43,22 @@ const CartPage = () => {
 
   return (
     <Container>
+      <Breadcrumb>
+        <LinkContainer to="/">
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+        </LinkContainer>
+
+        <Breadcrumb.Item active>Cart</Breadcrumb.Item>
+      </Breadcrumb>
+
       <h1 className="cart-title">Shopping Cart</h1>
+
       {!id && (
         <div className="cart">
           <h4 className="cart-description">Your cart is currently empty.</h4>
-          <Link to="/">
+          <LinkContainer to="/">
             <button className="cart-btn">Go Back</button>
-          </Link>
+          </LinkContainer>
         </div>
       )}
 
@@ -67,9 +78,9 @@ const CartPage = () => {
                       />
                     </Col>
                     <Col md={3}>
-                      <Link to={`/products/id/${item.product}`}>
+                      <LinkContainer to={`/products/id/${item.product}`}>
                         <strong>{item.name}</strong>
-                      </Link>
+                      </LinkContainer>
                     </Col>
                     <Col md={2}>€{item.price}</Col>
                     <Col md={2}>
@@ -114,70 +125,22 @@ const CartPage = () => {
                   <h5>Total price: € {subtotal}</h5>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Link to="/">
-                    <button className="cart-btn">Checkout</button>
-                  </Link>
+                  <button
+                    type="button"
+                    className="btn-block"
+                    disabled={cartItems.length === 0}
+                    onClick={() => {
+                      navigate("/login?redirect=shipping");
+                    }}
+                  >
+                    Checkout
+                  </button>
                 </ListGroup.Item>
               </ListGroup>
             </Card>
           </Col>
         </Row>
       )}
-
-      {/* {id && (
-        <Row className="cart-item">
-          <Col md={8}>
-            <ListGroup variant="flush">
-              {cartItems.map((item) => (
-                <ListGroup.Item key={item.product}>
-                  <Row>
-                    <Col md={2}>
-                      <Image src={item.image} alt={item.name} fluid rounded />
-                    </Col>
-                    <Col md={3}>
-                      <Link to={`/product/${item.product}`}>{item.name}</Link>
-                    </Col>
-                    <Col md={2}>${item.price}</Col>
-                    <Col md={2}>
-                      
-                    </Col>
-                    <Col md={2}>
-                      <Button type="button" variant="light">
-                        <i className="fas fa-trash"></i>
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </Col>
-          <Col md={4}>
-            <Card>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h2>
-                    Subtotal (
-                    {cartItems.reduce((acc, item) => acc + item.qty, 0)}) items
-                  </h2>
-                  $
-                  {cartItems
-                    .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toFixed(2)}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Button
-                    type="button"
-                    className="btn-block"
-                    disabled={cartItems.length === 0}
-                  >
-                    Proceed To Checkout
-                  </Button>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card>
-          </Col>
-        </Row>
-      )} */}
     </Container>
   );
 };

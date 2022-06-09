@@ -36,10 +36,6 @@ const ProductPage = () => {
     dispatch(listProductDetails(id));
   }, [dispatch, id]);
 
-  const addToCartHandler = () => {
-    navigate(`/cart/${id}?quantity=${quantity}`);
-  };
-
   return (
     <Container>
       {loading && <Loader />}
@@ -157,7 +153,9 @@ const ProductPage = () => {
                     className="btn-block"
                     type="submit"
                     disabled={product.countInStock === 0}
-                    onClick={addToCartHandler}
+                    onClick={() => {
+                      navigate(`/cart/${id}?quantity=${quantity}`);
+                    }}
                   >
                     ADD TO CART
                   </button>

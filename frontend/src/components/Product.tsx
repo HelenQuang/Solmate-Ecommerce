@@ -3,13 +3,14 @@ import { ProductInterface } from "../types/ProductInterface";
 import { Card } from "react-bootstrap";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Product: React.FC<{ product: ProductInterface }> = ({ product }) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`/products/id/${product._id}`}>
+      <LinkContainer to={`/products/id/${product._id}`}>
         <Card.Img src={product.image[0]} variant="top" />
-      </Link>
+      </LinkContainer>
       <Card.Body>
         <Link to={`/products/id/${product._id}`}>
           <Card.Title>

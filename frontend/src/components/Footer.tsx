@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Footer: React.FC = () => {
   return (
@@ -9,10 +10,19 @@ const Footer: React.FC = () => {
           <Col className="py-3">
             <ul className="footer-menu-list">
               <li>Shop Online</li>
-              <li>Earings</li>
-              <li>Necklaces</li>
-              <li>Bracelets</li>
-              <li>Rings</li>
+
+              <LinkContainer to="/products/category/bracelets">
+                <li>Bracelets</li>
+              </LinkContainer>
+              <LinkContainer to="/products/category/earings">
+                <li>Earings</li>
+              </LinkContainer>
+              <LinkContainer to="/products/category/necklaces">
+                <li>Necklaces</li>
+              </LinkContainer>
+              <LinkContainer to="/products/category/rings">
+                <li>Rings</li>
+              </LinkContainer>
             </ul>
           </Col>
 
