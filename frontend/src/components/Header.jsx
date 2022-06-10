@@ -97,7 +97,7 @@ const Header = () => {
                 id="username"
                 className="username-dropdown"
               >
-                <LinkContainer to="/products/category/bracelets">
+                <LinkContainer to="/profile">
                   <NavDropdown.Item>Account</NavDropdown.Item>
                 </LinkContainer>
 

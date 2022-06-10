@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { login } from "../actions/userAction";
+import { login, register } from "../actions/userAction";
 
 const LogInPage = () => {
   const [name, setName] = useState("");
@@ -20,27 +20,34 @@ const LogInPage = () => {
   const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, userInfo, error } = userLogin;
+
+  const userRegister = useSelector((state) => state.userRegister);
 
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword));
   };
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/");
-    }
-  }, [navigate, userInfo]);
-
   const registerHandler = (e) => {
     e.preventDefault();
     if (registerPassword === !confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      // dispatch(login(email, password));
+      dispatch(register(name, registerEmail, registerPassword));
     }
   };
+
+  useEffect(() => {
+    if (userLogin.userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userLogin.userInfo]);
+
+  useEffect(() => {
+    if (userRegister.userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userRegister.userInfo]);
 
   return (
     <Container>
@@ -51,9 +58,12 @@ const LogInPage = () => {
             <p className="login-description">
               Welcome back! Log into your account to continue.
             </p>
-            {loading && <Loader />}
-            {message && <Message variant="danger">{message}</Message>}
-            {!loading && error && <Message variant="danger">{error}</Message>}
+            {userLogin.loading && <Loader />}
+
+            {userLogin.error && (
+              <Message variant="danger">{userLogin.error}</Message>
+            )}
+
             <Form onSubmit={loginHandler}>
               <Form.Group controlId="email">
                 <input
@@ -88,6 +98,12 @@ const LogInPage = () => {
             <p className="login-description">
               Are you new Solmate? We are happy to have you.
             </p>
+            {userRegister.loading && <Loader />}
+            {message && <Message variant="danger">{message}</Message>}
+            {userRegister.error && (
+              <Message variant="danger">{userRegister.error}</Message>
+            )}
+
             <Form onSubmit={registerHandler}>
               <Form.Group controlId="email">
                 <input
