@@ -18,7 +18,8 @@
   color: #271a0b;
   width: 3rem;
   height: 3rem;
-  margin-left: 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
   border-radius: 100rem;
   background-color: #fff2e3;
   border: none;
@@ -43,6 +44,10 @@
   transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
   color: #271a0b;
+}
+
+.username-dropdown {
+  margin-left: 0.5rem;
 }
 
 /* ***************REUSABLE************** */
@@ -161,10 +166,49 @@ option {
   }
 }
 
-/* ***************CART************** */
+/****************LOGIN************** */
+
+.login {
+  font-family: "Maven Pro";
+  margin-bottom: 5rem;
+}
+
+.login-title {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.login-description {
+  font-size: 1.4rem;
+}
+
+.login-input {
+  text-align: left;
+  border: none;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #271a0b21;
+  background-color: var(--bs-body-bg);
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.login-input:hover,
+.login-input:active {
+  border-bottom: 1px solid #271a0b21;
+}
+
+.lastchild {
+  margin-bottom: 3rem;
+}
+
+.separator-left {
+  border-left: 1px solid #271a0b21;
+}
+
+/****************CART************** */
 .cart-title {
   text-align: center;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 3.5rem;
   font-family: "Maven Pro";
   margin-bottom: 3rem;

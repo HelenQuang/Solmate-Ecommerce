@@ -4465,8 +4465,8 @@ fieldset:disabled .btn {
   position: absolute;
 }
 .navbar-expand .navbar-nav .nav-link {
-  padding-right: 2rem;
-  padding-left: 0rem;
+  margin-right: 1.5rem;
+  margin-left: 0.5rem;
 }
 .navbar-expand .navbar-nav-scroll {
   overflow: visible;

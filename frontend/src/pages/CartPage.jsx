@@ -14,7 +14,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 
-import { addToCart, removeFromCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartAction";
 
 const CartPage = () => {
   const { id } = useParams();
