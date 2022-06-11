@@ -15,7 +15,7 @@ import {
 } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 
-import CartPage from "../pages/CartPage";
+import CartOverlays from "./CartOverlays";
 import { logout } from "../actions/userAction";
 
 const Header = () => {
@@ -28,6 +28,10 @@ const Header = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -115,10 +119,12 @@ const Header = () => {
               onHide={handleClose}
             >
               <Offcanvas.Header closeButton>
-                {/* <Offcanvas.Title>Shopping Cart</Offcanvas.Title> */}
+                <Offcanvas.Title>
+                  <h2>Shopping Cart ({totalItems})</h2>
+                </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <CartPage />
+                <CartOverlays />
               </Offcanvas.Body>
             </Offcanvas>
           </Nav>

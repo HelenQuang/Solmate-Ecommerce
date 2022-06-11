@@ -4684,6 +4684,7 @@ fieldset:disabled .btn {
 .card-img-top {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
+  cursor: pointer;
 }
 .card-img,
 .card-img-bottom {
@@ -4862,7 +4863,7 @@ fieldset:disabled .btn {
   float: left;
   padding-right: 0.5rem;
   color: #271a0b;
-  content: var(--bs-breadcrumb-divider, "/");
+  content: var(--bs-breadcrumb-divider, ">");
 }
 .breadcrumb-item.active {
   color: #271a0b;
@@ -6351,10 +6352,10 @@ fieldset:disabled .btn {
   flex-direction: column;
   max-width: 100%;
   visibility: hidden;
-  background-color: rgba(240, 245, 250, 0.8);
+  background-color: #fff;
   background-clip: padding-box;
   outline: 0;
-  box-shadow: 0 0.125rem 0.25rem rgba(55, 94, 148, 0.2);
+
   transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
@@ -6397,6 +6398,7 @@ fieldset:disabled .btn {
 .offcanvas-title {
   margin-bottom: 0;
   line-height: 1.5;
+  font-family: "Maven Pro";
 }
 .offcanvas-body {
   -ms-flex-positive: 1;
@@ -6415,8 +6417,8 @@ fieldset:disabled .btn {
 .offcanvas-end {
   top: 0;
   right: 0;
-  width: 400px;
-  border-left: 0 solid rgba(0, 0, 0, 0.2);
+  width: 600px;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }

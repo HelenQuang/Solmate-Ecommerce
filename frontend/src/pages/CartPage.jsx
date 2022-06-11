@@ -40,6 +40,8 @@ const CartPage = () => {
   const subtotal = cartItems
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
+  const shipping = subtotal > 50 ? 0 : 10;
+  const total = (+subtotal + shipping).toFixed(2);
 
   return (
     <Container>
@@ -121,8 +123,8 @@ const CartPage = () => {
                 <ListGroup.Item>
                   <h5>Total items: {totalItems}</h5>
                   <h5>Subtotal price: € {subtotal}</h5>
-                  <h5>Shipping fee: € {subtotal}</h5>
-                  <h5>Total price: € {subtotal}</h5>
+                  <h5>Shipping fee: € {shipping}</h5>
+                  <h5>Total price: € {total}</h5>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <button

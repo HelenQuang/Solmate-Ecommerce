@@ -5,6 +5,10 @@
   border-bottom: 1px solid #271a0b21;
 }
 
+.separator-top {
+  border-top: 1px solid #271a0b21;
+}
+
 .nav-right {
   border-left: 1px solid #271a0b21;
 }
@@ -29,13 +33,6 @@
     box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
-.btn-header:focus {
-  color: #271a0b;
-}
-
-.btn-header:active,
-.btn-header:active:focus,
-.btn-header:focus,
 .btn-header:hover {
   background-color: #f8dfc3;
   border: none;
@@ -48,6 +45,14 @@
 
 .username-dropdown {
   margin-left: 0.5rem;
+}
+
+.clear-btn {
+  background-color: #fff;
+  color: #271a0b;
+  margin-bottom: 0.3rem;
+  margin-left: 0.5rem;
+  border: none;
 }
 
 /* ***************REUSABLE************** */
