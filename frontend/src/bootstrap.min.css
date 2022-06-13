@@ -2259,8 +2259,6 @@ textarea.form-control-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
 }
 .form-check-input[type="checkbox"] {
   border-radius: 0.25em;
@@ -11097,7 +11095,7 @@ fieldset:disabled .btn {
     inset 2px 2px 8px rgba(120, 123, 125, 0.1);
 }
 .form-check-input {
-  background-color: #bed1e6;
+  background-color: #271a0b80;
   border: none;
   box-shadow: inset 1px 1px 7px rgba(0, 0, 0, 0.2);
 }

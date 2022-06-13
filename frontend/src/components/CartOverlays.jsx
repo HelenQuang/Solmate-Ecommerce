@@ -22,7 +22,6 @@ const CartOverlays = () => {
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
   const shipping = subtotal > 50 ? 0 : 10;
-
   const total = (+subtotal + shipping).toFixed(2);
 
   return (
@@ -103,7 +102,7 @@ const CartOverlays = () => {
               className="btn-block"
               disabled={cartItems.length === 0}
               onClick={() => {
-                navigate("/login?redirect=shipping");
+                navigate("/cart/:id");
               }}
             >
               Checkout

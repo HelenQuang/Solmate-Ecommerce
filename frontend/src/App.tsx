@@ -9,9 +9,9 @@ import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import LogInPage from "./pages/LogInPage";
 import WishlistPage from "./pages/WishlistPage";
-import OrderPage from "./pages/OrderPage";
 import PaymentPage from "./pages/PaymentPage";
 import ProfilePage from "./pages/ProfilePage";
+import ShippingPage from "./pages/ShippingPage";
 
 const App: React.FC = () => {
   return (
@@ -33,8 +33,8 @@ const App: React.FC = () => {
           <Route path="/cart/:id" element={<CartPage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/order" element={<OrderPage />} />
           <Route path="/payment" element={<PaymentPage />} />
         </Routes>
       </main>

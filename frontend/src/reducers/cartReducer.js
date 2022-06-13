@@ -2,11 +2,25 @@ import {
   CART_ADD_ITEM,
   CART_CLEAR_ITEMS,
   CART_REMOVE_ITEM,
-  CART_SAVE_SHIPPING_ADDRESS,
+  CART_SAVE_SHIPPING_INFO,
   CART_SAVE_PAYMENT_METHOD,
 } from "../constants/cartConstants";
 
-export const cartReducer = (state = { cartItems: [] }, action) => {
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const shippingInfoFromStorage = localStorage.getItem("shippingInfo")
+  ? JSON.parse(localStorage.getItem("shippingInfo"))
+  : [];
+
+export const cartReducer = (
+  state = {
+    cartItems: cartItemsFromStorage,
+    shippingInfo: shippingInfoFromStorage,
+  },
+  action
+) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
@@ -31,6 +45,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+      };
+
+    case CART_SAVE_SHIPPING_INFO:
+      return {
+        ...state,
+        shippingInfo: action.payload,
       };
 
     default:

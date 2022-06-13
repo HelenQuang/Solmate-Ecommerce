@@ -27,7 +27,14 @@ import {
   USER_UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 
-export const userLoginReducer = (state = {}, action) => {
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
+
+export const userLoginReducer = (
+  state = { userInfo: userInfoFromStorage },
+  action
+) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
       return { loading: true };
