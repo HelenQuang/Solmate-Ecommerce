@@ -5125,6 +5125,7 @@ fieldset:disabled .btn {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
+
   padding-left: 0;
   margin-bottom: 0;
   border-radius: 0.25rem;
@@ -5155,7 +5156,7 @@ fieldset:disabled .btn {
 }
 .list-group-item {
   position: relative;
-  display: block;
+
   padding: 0.5rem 1rem;
   color: #212529;
   text-decoration: none;

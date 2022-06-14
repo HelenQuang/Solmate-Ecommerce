@@ -8,8 +8,8 @@ import {
   Image,
   Form,
   Container,
-  Card,
   Breadcrumb,
+  ListGroupItem,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
@@ -45,7 +45,6 @@ const CartPage = () => {
     }
   };
 
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const subtotal = cartItems
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
@@ -64,7 +63,7 @@ const CartPage = () => {
 
       <h1 className="cart-title">Shopping Cart</h1>
 
-      {!id && (
+      {!cartItems && (
         <div className="cart">
           <h4 className="cart-description">Your cart is currently empty.</h4>
           <LinkContainer to="/">
@@ -73,9 +72,9 @@ const CartPage = () => {
         </div>
       )}
 
-      {id && (
+      {cartItems && (
         <Row>
-          <ListGroup variant="flush" className="separator-bottom">
+          <ListGroup variant="flush">
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row className="cart-item-details">
@@ -119,39 +118,36 @@ const CartPage = () => {
               </ListGroup.Item>
             ))}
           </ListGroup>
-
-          <ListGroup variant="flush">
-            <ListGroup.Item className="cart-amount">
-              <Row className="mt-4 mb-1">
-                <Col md={3}>
-                  <strong>SUBTOTAL</strong>
-                </Col>
-                <Col md={3}>€ {subtotal}</Col>
-              </Row>
-              <Row className="mb-1">
-                <Col md={3}>
-                  <strong>SHIPPING</strong>
-                </Col>
-                <Col md={3}>€ {shipping}</Col>
-              </Row>
-              <Row className="mb-4">
-                <Col md={3}>
-                  <strong>TOTAL</strong>
-                </Col>
-                <Col md={3}>€ {total}</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
+          <div className="separator-top">
+            <Row className="amount-details mt-4 mb-1">
+              <Col md={4}>
+                <strong>SUBTOTAL</strong>
+              </Col>
+              <Col md={3}>€ {subtotal}</Col>
+            </Row>
+            <Row className="amount-details mb-1">
+              <Col md={4}>
+                <strong>SHIPPING</strong>
+              </Col>
+              <Col md={3}>€ {shipping}</Col>
+            </Row>
+            <Row className="amount-details mb-4">
+              <Col md={4}>
+                <strong>TOTAL</strong>
+              </Col>
+              <Col md={3}>€ {total}</Col>
+            </Row>
+            <Row className="amount-details-btn mb-2">
               <button
                 type="button"
                 className="cart-btn"
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
-                Checkout
+                CONTINUE TO SHIPPING
               </button>
-            </ListGroup.Item>
-          </ListGroup>
+            </Row>
+          </div>
         </Row>
       )}
     </Container>

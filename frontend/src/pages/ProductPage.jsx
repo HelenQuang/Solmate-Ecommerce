@@ -80,7 +80,7 @@ const ProductPage = () => {
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                  <h4> €{product.price}</h4>
+                  <h4> € {product.price}</h4>
                 </ListGroup.Item>
 
                 <ListGroup.Item>

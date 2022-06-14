@@ -105,7 +105,7 @@ const CartOverlays = () => {
                 navigate("/cart/:id");
               }}
             >
-              Checkout
+              CHECK OUT
             </button>
           </div>
         </>

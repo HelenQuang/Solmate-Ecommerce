@@ -56,7 +56,7 @@ const ShippingPage = () => {
         <Breadcrumb.Item active>Shipping</Breadcrumb.Item>
       </Breadcrumb>
 
-      <Row>
+      <Row className="mb-5">
         <Col className="shipping-info">
           <h1 className="shipping-title">Shipping Information</h1>
 
@@ -85,7 +85,7 @@ const ShippingPage = () => {
               <input
                 className="login-input"
                 type="postalCode"
-                placeholder="postal Code"
+                placeholder="Postal Code"
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
               ></input>
@@ -129,7 +129,7 @@ const ShippingPage = () => {
             </Form.Group>
 
             <button className="btn-block" type="submit">
-              Continue
+              CONTINUE
             </button>
           </Form>
         </Col>
