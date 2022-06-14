@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Breadcrumb,
@@ -10,12 +10,16 @@ import {
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import Message from "../components/Message";
 import { savePaymentMethod, saveShippingMethod } from "../actions/cartAction";
+import { createOrder } from "../actions/orderAction";
 
 const PaymentPage = () => {
   let total;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const [shippingMethod, setShippingMethod] = useState("");
@@ -37,7 +41,27 @@ const PaymentPage = () => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
     dispatch(saveShippingMethod(shippingMethod));
+    dispatch(
+      createOrder({
+        orderItems: cartItems,
+        shippingInfo: shippingInfo,
+        paymentMethod: paymentMethod,
+        shippingMethod: shippingMethod,
+        subtotalPrice: subtotal,
+        totalPrice: total,
+      })
+    );
   };
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate, success]);
 
   return (
     <Container>
@@ -130,6 +154,8 @@ const PaymentPage = () => {
                   ></Form.Check>
                 </Col>
               </Form.Group>
+
+              {error && <Message variant="danger">{error}</Message>}
 
               <button className="btn-block" type="submit">
                 PLACE ORDER
