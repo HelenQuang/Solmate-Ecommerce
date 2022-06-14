@@ -323,6 +323,7 @@ tr {
 }
 label {
   display: inline-block;
+  font-family: "Maven Pro";
 }
 button {
   border-radius: 0;
@@ -2037,6 +2038,7 @@ progress {
 .form-control::placeholder {
   color: #271a0b;
   opacity: 1;
+  font-family: "Maven Pro";
 }
 .form-control:disabled,
 .form-control[readonly] {

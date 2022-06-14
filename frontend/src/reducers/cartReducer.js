@@ -4,6 +4,7 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_INFO,
   CART_SAVE_PAYMENT_METHOD,
+  CART_SAVE_SHIPPING_METHOD,
 } from "../constants/cartConstants";
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
@@ -57,6 +58,12 @@ export const cartReducer = (
       return {
         ...state,
         paymentMethod: action.payload,
+      };
+
+    case CART_SAVE_SHIPPING_METHOD:
+      return {
+        ...state,
+        shippingMethod: action.payload,
       };
 
     default:

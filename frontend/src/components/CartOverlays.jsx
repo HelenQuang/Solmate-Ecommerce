@@ -21,8 +21,6 @@ const CartOverlays = () => {
   const subtotal = cartItems
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
-  const shipping = subtotal > 50 ? 0 : 10;
-  const total = (+subtotal + shipping).toFixed(2);
 
   return (
     <>
@@ -78,24 +76,25 @@ const CartOverlays = () => {
               </ListGroup.Item>
             ))}
           </ListGroup>
+
           <div className="separator-top">
-            <Row className="cart-item-details mt-4 mb-1">
-              <Col md={4}>
+            <Row className="overlay-amount-details mt-4 mb-1">
+              <Col md={3}>
                 <strong>SUBTOTAL</strong>
               </Col>
               <Col md={3}>€ {subtotal}</Col>
             </Row>
-            <Row className="cart-item-details mb-1">
-              <Col md={4}>
+            <Row className="overlay-amount-details mb-1">
+              <Col md={3}>
                 <strong>SHIPPING</strong>
               </Col>
-              <Col md={3}>€ {shipping}</Col>
+              <Col md={3}>Calculated at checkout</Col>
             </Row>
-            <Row className="cart-item-details mb-4">
-              <Col md={4}>
+            <Row className="overlay-amount-details mb-4">
+              <Col md={3}>
                 <strong>TOTAL</strong>
               </Col>
-              <Col md={3}>€ {total}</Col>
+              <Col md={3}>€ {subtotal}</Col>
             </Row>
             <button
               type="button"

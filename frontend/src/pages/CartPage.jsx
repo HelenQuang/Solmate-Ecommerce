@@ -9,7 +9,6 @@ import {
   Form,
   Container,
   Breadcrumb,
-  ListGroupItem,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
@@ -36,7 +35,8 @@ const CartPage = () => {
     dispatch(removeFromCart(itemId));
   };
 
-  const checkoutHandler = () => {
+  const checkoutHandler = (e) => {
+    e.preventDefault();
     const userInfo = localStorage.getItem("userInfo");
     if (userInfo) {
       navigate("/shipping");
@@ -48,8 +48,6 @@ const CartPage = () => {
   const subtotal = cartItems
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
-  const shipping = subtotal > 50 ? 0 : 10;
-  const total = (+subtotal + shipping).toFixed(2);
 
   return (
     <Container>
@@ -57,8 +55,9 @@ const CartPage = () => {
         <LinkContainer to="/">
           <Breadcrumb.Item>Home</Breadcrumb.Item>
         </LinkContainer>
-
         <Breadcrumb.Item active>Cart</Breadcrumb.Item>
+        <Breadcrumb.Item>Shipping</Breadcrumb.Item>
+        <Breadcrumb.Item>Payment</Breadcrumb.Item>
       </Breadcrumb>
 
       <h1 className="cart-title">Shopping Cart</h1>
@@ -118,6 +117,7 @@ const CartPage = () => {
               </ListGroup.Item>
             ))}
           </ListGroup>
+
           <div className="separator-top">
             <Row className="amount-details mt-4 mb-1">
               <Col md={4}>
@@ -129,24 +129,30 @@ const CartPage = () => {
               <Col md={4}>
                 <strong>SHIPPING</strong>
               </Col>
-              <Col md={3}>€ {shipping}</Col>
+              <Col md={3}>Calculated at next step</Col>
             </Row>
             <Row className="amount-details mb-4">
               <Col md={4}>
                 <strong>TOTAL</strong>
               </Col>
-              <Col md={3}>€ {total}</Col>
+              <Col md={3}>€ {subtotal}</Col>
             </Row>
-            <Row className="amount-details-btn mb-2">
+            <Form onSubmit={checkoutHandler}>
+              <Form.Check
+                required
+                type="checkbox"
+                id="terms"
+                label="I accept the terms and conditions, privacy policy and legal notice"
+              />
+
               <button
-                type="button"
-                className="cart-btn"
+                type="submit"
+                className="cart-btn my-4"
                 disabled={cartItems.length === 0}
-                onClick={checkoutHandler}
               >
                 CONTINUE TO SHIPPING
               </button>
-            </Row>
+            </Form>
           </div>
         </Row>
       )}

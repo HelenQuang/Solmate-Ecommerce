@@ -31,8 +31,6 @@ const ShippingPage = () => {
   const subtotal = cartItems
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
-  const shipping = subtotal > 50 ? 0 : 10;
-  const total = (+subtotal + shipping).toFixed(2);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -48,12 +46,11 @@ const ShippingPage = () => {
         <LinkContainer to="/">
           <Breadcrumb.Item>Home</Breadcrumb.Item>
         </LinkContainer>
-
         <LinkContainer to="/cart">
           <Breadcrumb.Item>Cart</Breadcrumb.Item>
         </LinkContainer>
-
         <Breadcrumb.Item active>Shipping</Breadcrumb.Item>
+        <Breadcrumb.Item>Payment</Breadcrumb.Item>
       </Breadcrumb>
 
       <Row className="mb-5">
@@ -172,13 +169,13 @@ const ShippingPage = () => {
               <Col md={3}>
                 <strong>SHIPPING</strong>
               </Col>
-              <Col md={3}>€ {shipping}</Col>
+              <Col md={3}>Calculated at next step</Col>
             </Row>
             <Row className="shipping-amount-details mb-4">
               <Col md={3}>
                 <strong>TOTAL</strong>
               </Col>
-              <Col md={3}>€ {total}</Col>
+              <Col md={3}>€ {subtotal}</Col>
             </Row>
           </div>
         </Col>

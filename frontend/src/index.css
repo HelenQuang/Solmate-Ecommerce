@@ -211,10 +211,17 @@ option {
 }
 
 /****************CART************** */
-.cart-title {
-  text-align: center;
-  font-size: 3.5rem;
+
+.overlay-amount-details {
   font-family: "Maven Pro";
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.cart-title {
+  font-size: 3.5rem;
+
   margin-bottom: 3rem;
 }
 
@@ -233,15 +240,11 @@ option {
 .cart-item-details {
   font-family: "Maven Pro";
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .amount-details {
   font-family: "Maven Pro";
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .cart-description {
@@ -330,14 +333,14 @@ option {
 .shipping-item-details {
   font-family: "Maven Pro";
   display: flex;
-  justify-content: center;
+
   align-items: center;
 }
 
 /* ***************PAYMENT************** */
 .payment-title {
   font-family: "Maven Pro";
-  font-size: 3rem;
+  font-size: 2.4rem;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -354,17 +357,23 @@ option {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-family: "Maven Pro";
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #271a0b21;
+}
+
+.confirm-shipping-info {
+  font-family: "Maven Pro";
+  margin-left: 6rem;
+  margin-top: 3rem;
 }
 
 /* ***************FOOTER************** */
 footer {
   background-color: #f8dfc3;
   margin-top: 3rem;
-}
-
-.separator-top {
-  border-top: 1px solid #271a0b21;
 }
 
 .footer-menu-list {
