@@ -12,6 +12,7 @@ import WishlistPage from "./pages/WishlistPage";
 import PaymentPage from "./pages/PaymentPage";
 import ProfilePage from "./pages/ProfilePage";
 import ShippingPage from "./pages/ShippingPage";
+import OrderPage from "./pages/OrderPage";
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/order/:id" element={<OrderPage />} />
         </Routes>
       </main>
       <Footer />

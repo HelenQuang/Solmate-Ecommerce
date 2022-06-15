@@ -13,7 +13,7 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
 
 const shippingInfoFromStorage = localStorage.getItem("shippingInfo")
   ? JSON.parse(localStorage.getItem("shippingInfo"))
-  : [];
+  : {};
 
 export const cartReducer = (
   state = {

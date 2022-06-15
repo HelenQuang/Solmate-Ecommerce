@@ -51,6 +51,7 @@ const ShippingPage = () => {
         </LinkContainer>
         <Breadcrumb.Item active>Shipping</Breadcrumb.Item>
         <Breadcrumb.Item>Payment</Breadcrumb.Item>
+        <Breadcrumb.Item>Order Confirmation</Breadcrumb.Item>
       </Breadcrumb>
 
       <Row className="mb-5">

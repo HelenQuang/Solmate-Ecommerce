@@ -58,6 +58,7 @@ const CartPage = () => {
         <Breadcrumb.Item active>Cart</Breadcrumb.Item>
         <Breadcrumb.Item>Shipping</Breadcrumb.Item>
         <Breadcrumb.Item>Payment</Breadcrumb.Item>
+        <Breadcrumb.Item>Order Confirmation</Breadcrumb.Item>
       </Breadcrumb>
 
       <h1 className="cart-title">Shopping Cart</h1>
