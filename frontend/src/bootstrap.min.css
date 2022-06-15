@@ -300,7 +300,7 @@ svg {
 }
 table {
   caption-side: bottom;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 caption {
   padding-top: 0.5rem;
@@ -1777,19 +1777,19 @@ progress {
   }
 }
 .table {
-  --bs-table-bg: transparent;
-  --bs-table-accent-bg: transparent;
-  --bs-table-striped-color: #7b8ab8;
+  --bs-table-bg: var(--bs-body-bg);
+  --bs-table-accent-bg: rgba(0, 0, 0, 0.02);
+  --bs-table-striped-color: var(--bs-body-bg);
   --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
-  --bs-table-active-color: #7b8ab8;
-  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
-  --bs-table-hover-color: #7b8ab8;
-  --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+  --bs-table-active-color: var(--bs-body-bg);
+  --bs-table-active-bg: rgba(0, 0, 0, 0.5);
+  --bs-table-hover-color: var(--bs-body-bg);
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.3);
   width: 100%;
   margin-bottom: 1rem;
-  color: #7b8ab8;
-  vertical-align: top;
-  border-color: rgba(55, 94, 148, 0.1);
+  color: #271a0b;
+  /* vertical-align: top; */
+  border: solid 0.5px #271a0b40;
 }
 .table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
@@ -1799,9 +1799,11 @@ progress {
 }
 .table > tbody {
   vertical-align: inherit;
+  text-align: center;
 }
 .table > thead {
   vertical-align: bottom;
+  text-align: center;
 }
 .table > :not(:first-child) {
   border-top: 0 solid currentColor;
@@ -1826,15 +1828,15 @@ progress {
 }
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: var(--bs-table-striped-bg);
-  color: var(--bs-table-striped-color);
+  color: #271a0b;
 }
 .table-active {
   --bs-table-accent-bg: var(--bs-table-active-bg);
-  color: var(--bs-table-active-color);
+  color: #271a0b;
 }
 .table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: var(--bs-table-hover-bg);
-  color: var(--bs-table-hover-color);
+  color: #271a0b;
 }
 .table-primary {
   --bs-table-bg: #d7e8fe;
@@ -3123,8 +3125,8 @@ fieldset:disabled .btn {
   color: #000;
   background-color: #f0f5fa;
   border-color: #f0f5fa;
-  box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.4);
+  /* box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
+    -5px -5px 10px rgba(255, 255, 255, 0.4); */
 }
 .btn-light:hover {
   color: #000;
@@ -10558,8 +10560,8 @@ fieldset:disabled .btn {
 .btn {
   position: relative;
   color: #271a0b;
-  width: 3rem;
-  height: 3rem;
+  /* width: 3rem;
+  height: 3rem; */
   border-radius: 100rem;
   background-color: #fff2e3;
   border: none;
@@ -10569,19 +10571,19 @@ fieldset:disabled .btn {
     box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 .btn:focus {
-  color: #7b8ab8;
+  color: #271a0b;
 }
 .btn:active,
 .btn:active:focus,
 .btn:focus,
 .btn:hover {
-  background-color: #d9e3f1;
+  background-color: #f8dfc3;
   border: none;
   box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
     -5px -5px 10px rgba(255, 255, 255, 0.4);
   transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
-  color: #7b8ab8;
+  color: #271a0b;
 }
 .btn:active,
 .btn:active:focus {

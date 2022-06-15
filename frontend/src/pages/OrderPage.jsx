@@ -10,23 +10,47 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getOrderDetails } from "../actions/orderAction";
+import { getOrderDetails, payOrder } from "../actions/orderAction";
+import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const [{ isPending, isResolved, isRejected }] = usePayPalScriptReducer();
+
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, error, order } = orderDetails;
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
+
   useEffect(() => {
-    if (!order || order._id !== id) {
+    if (!order || order._id !== id || successPay) {
+      dispatch({ type: ORDER_PAY_RESET });
       dispatch(getOrderDetails(id));
     }
-  }, [dispatch, id, order]);
+  }, [dispatch, id, order, successPay]);
+
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: { value: order.totalPrice },
+        },
+      ],
+    });
+  };
+
+  const successPaymentHandler = (data, actions) => {
+    return actions.order.capture().then((details) => {
+      dispatch(payOrder(id, details));
+    });
+  };
 
   return (
     <Container>
@@ -85,7 +109,7 @@ const OrderPage = () => {
               {order.isDelivered ? (
                 <div>
                   <Message variant="success">
-                    Order is delivered at {order.deliveredAt}
+                    Order is delivered on {order.deliveredAt.substring(0, 10)}
                   </Message>
                 </div>
               ) : (
@@ -101,13 +125,27 @@ const OrderPage = () => {
               {order.isPaid ? (
                 <div>
                   <Message variant="success">
-                    Order is paid at {order.paidAt}
+                    Thank you for your payment. Order is paid on{" "}
+                    {order.paidAt.substring(0, 10)}
                   </Message>
                 </div>
               ) : (
                 <div>
                   <Message variant="warning">Order is not paid</Message>
                 </div>
+              )}
+
+              {loadingPay && <Loader />}
+              {isPending && <Loader />}
+              {isRejected && (
+                <Message variant="danger">SDK loading error</Message>
+              )}
+              {isResolved && (
+                <PayPalButtons
+                  createOrder={createOrder}
+                  onApprove={successPaymentHandler}
+                  className="paypal-btn"
+                />
               )}
             </div>
           </Col>

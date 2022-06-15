@@ -210,6 +210,20 @@ option {
   border-left: 1px solid #271a0b21;
 }
 
+/****************PROFILE************** */
+.profile-title {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.profile-form {
+  padding: 0 2.5rem 2.5rem 2.5rem;
+  border: solid 0.5px #271a0b40;
+  border-radius: 1rem;
+}
+
 /****************CART************** */
 
 .overlay-amount-details {
@@ -333,7 +347,6 @@ option {
 .shipping-item-details {
   font-family: "Maven Pro";
   display: flex;
-
   align-items: center;
 }
 
@@ -368,6 +381,12 @@ option {
   font-family: "Maven Pro";
   margin-left: 6rem;
   margin-top: 3rem;
+}
+
+.paypal-btn {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  width: 80%;
 }
 
 /* ***************FOOTER************** */
