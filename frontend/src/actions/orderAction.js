@@ -132,6 +132,15 @@ export const payOrder =
         type: ORDER_PAY_SUCCESS,
         payload: data,
       });
+
+      dispatch({
+        type: CART_CLEAR_ITEMS,
+      });
+      localStorage.removeItem("cartItems");
+      localStorage.removeItem("shippingInfo");
+      localStorage.removeItem("paymentMethod");
+      localStorage.removeItem("shippingMethod");
+      localStorage.removeItem("__paypal_storage__");
     } catch (error) {
       const message =
         error.response && error.response.data.message

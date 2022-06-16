@@ -26,6 +26,7 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_REQUEST,
 } from "../constants/userConstants";
+import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -91,6 +92,8 @@ export const register = (name, email, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
 };
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
@@ -108,7 +111,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`/api/users/${id}`, config);
-    console.log(data);
+
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =

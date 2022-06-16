@@ -32,7 +32,6 @@ const ProfilePage = () => {
 
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
-  console.log(orders);
 
   useEffect(() => {
     if (!userInfo) {
@@ -118,7 +117,13 @@ const ProfilePage = () => {
           <h1 className="profile-title">My Orders</h1>
           {loadingOrders && <Loader />}
           {errorOrders && <Message variant="danger">{errorOrders}</Message>}
-          {orders && (
+          {orders && orders.length === 0 && (
+            <p style={{ textAlign: "center", fontSize: "1.2rem" }}>
+              Your previous order list is empty now. Start shopping with{" "}
+              <a href="/">us.</a>
+            </p>
+          )}
+          {orders && orders.length > 0 && (
             <Table bordered responsive className="table-sm">
               <thead>
                 <tr>
