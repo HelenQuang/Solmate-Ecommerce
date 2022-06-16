@@ -14,7 +14,7 @@ import {
 } from "../actions/userAction";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
-const UserListPage = () => {
+const OrderListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -79,7 +79,7 @@ const UserListPage = () => {
 
   return (
     <Container>
-      <h1 className="profile-title">List of Users</h1>
+      <h1 className="profile-title">List of Orders</h1>
       {loading && <Loader />}
       {error && <Message variant="danger">{error}</Message>}
       {!loading && users && (
@@ -188,4 +188,4 @@ const UserListPage = () => {
   );
 };
 
-export default UserListPage;
+export default OrderListPage;

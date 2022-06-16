@@ -1,118 +1,98 @@
 import { useEffect, useState } from "react";
-import { FaTimes, FaCheck, FaTrash, FaEdit } from "react-icons/fa";
-import { Table, Container, Form, Modal } from "react-bootstrap";
+import { FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import { Table, Container, Form, Modal, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import {
-  listUsers,
-  deleteUser,
-  getUserDetails,
-  updateUser,
-} from "../actions/userAction";
-import { USER_UPDATE_RESET } from "../constants/userConstants";
+import { listProducts, deleteProduct } from "../actions/productAction";
 
-const UserListPage = () => {
+const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
 
-  const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const {
-    loading: loadingDetails,
-    error: errorDetails,
-    user: userDetailsInfo,
-  } = userDetails;
-
-  const userUpdate = useSelector((state) => state.userUpdate);
-  const { success: successUpdate } = userUpdate;
-
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers());
+      dispatch(listProducts());
     } else {
       navigate("/login");
     }
   }, [dispatch, navigate, userInfo, successDelete]);
 
-  useEffect(() => {
-    if (successUpdate) {
-      dispatch({ type: USER_UPDATE_RESET });
-      setShow(false);
-    } else {
-      setName(userDetailsInfo.name);
-      setEmail(userDetailsInfo.email);
-      setIsAdmin(userDetailsInfo.isAdmin);
-    }
-  }, [dispatch, successUpdate, userDetailsInfo]);
+  const createProductHandler = () => {
+    // dispatch(createProduct())
+  };
 
   const editHandler = (id) => {
-    setShow(true);
-    dispatch(getUserDetails(id));
+    // Edit
   };
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure to delete this user?")) {
-      dispatch(deleteUser(id));
+    if (window.confirm("Are you sure to delete this product?")) {
+      dispatch(deleteProduct(id));
     }
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(updateUser({ _id: userDetailsInfo._id, name, email, isAdmin }));
   };
 
   return (
     <Container>
-      <h1 className="profile-title">List of Users</h1>
+      <h1 className="profile-title ">List of Products</h1>
+
+      <button
+        className="mt-2 mb-3 btn-block"
+        style={{ width: "20%" }}
+        onClick={createProductHandler}
+      >
+        <FaPlus /> Create New Product
+      </button>
+
       {loading && <Loader />}
       {error && <Message variant="danger">{error}</Message>}
-      {!loading && users && (
+
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+
+      {!loading && products && (
         <Table bordered responsive className="table-sm admin-tables">
           <thead>
             <tr>
-              <th>USER ID</th>
+              <th>PRODUCT ID</th>
               <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIN</th>
+              <th>CATEGORY</th>
+              <th>PRICE</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
+            {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product._id}</td>
+                <td>{product.name}</td>
                 <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
+                  {product.category.charAt(0).toUpperCase() +
+                    product.category.slice(1)}
                 </td>
-                <td>
-                  {user.isAdmin ? (
-                    <FaCheck style={{ color: "green" }} />
-                  ) : (
-                    <FaTimes style={{ color: "red" }} />
-                  )}
-                </td>
+                <td>€ {product.price}</td>
                 <td>
                   <button
                     variant="light"
                     className="btn-header"
-                    onClick={() => editHandler(user._id)}
+                    onClick={() => editHandler(product._id)}
                   >
                     <FaEdit />
                   </button>
@@ -120,7 +100,7 @@ const UserListPage = () => {
                   <button
                     variant="danger"
                     className="btn-header "
-                    onClick={() => deleteHandler(user._id)}
+                    onClick={() => deleteHandler(product._id)}
                   >
                     <FaTrash />
                   </button>
@@ -131,7 +111,7 @@ const UserListPage = () => {
         </Table>
       )}
 
-      <Modal
+      {/* <Modal
         show={show}
         onHide={() => {
           setShow(false);
@@ -183,9 +163,9 @@ const UserListPage = () => {
             </Form>
           </Modal.Body>
         )}
-      </Modal>
+      </Modal> */}
     </Container>
   );
 };
 
-export default UserListPage;
+export default ProductListPage;
