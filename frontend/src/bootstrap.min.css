@@ -3508,8 +3508,8 @@ fieldset:disabled .btn {
 }
 .btn-group-sm > .btn,
 .btn-sm {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
   border-radius: 50rem;
 }
 .fade {
@@ -5607,7 +5607,7 @@ fieldset:disabled .btn {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: rgba(240, 245, 250, 0.8);
+  background-color: var(--bs-body-bg);
   background-clip: padding-box;
   border: 0 solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;

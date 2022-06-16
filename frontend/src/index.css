@@ -87,6 +87,15 @@
   font-family: "Maven Pro";
 }
 
+.admin-tables {
+  font-family: "Maven Pro";
+  font-size: 1.2rem;
+}
+
+.modal-title {
+  font-family: "Maven Pro";
+  font-size: 2rem;
+}
 /* ***************PRODUCT************** */
 .product-img {
   background-color: #fff;
@@ -188,6 +197,7 @@ option {
 }
 
 .login-input {
+  font-family: "Maven Pro";
   text-align: left;
   border: none;
   font-size: 1.2rem;
@@ -216,6 +226,7 @@ option {
   margin-bottom: 2rem;
   font-size: 3rem;
   text-align: center;
+  font-family: "Maven Pro";
 }
 
 .profile-form {

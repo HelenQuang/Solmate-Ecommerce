@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Navbar,
   Nav,
@@ -95,7 +95,7 @@ const Header = () => {
               </LinkContainer>
             )}
 
-            {userInfo && (
+            {userInfo && !userInfo.isAdmin && (
               <NavDropdown
                 title={userInfo.name}
                 id="username"
@@ -103,6 +103,30 @@ const Header = () => {
               >
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Account</NavDropdown.Item>
+                </LinkContainer>
+
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
+
+            {userInfo && userInfo.isAdmin && (
+              <NavDropdown
+                title="Admin"
+                id="admin"
+                className="username-dropdown"
+              >
+                <LinkContainer to="/admin/userlist">
+                  <NavDropdown.Item>Users List</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to="/admin/productlist">
+                  <NavDropdown.Item>Products List</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to="/admin/orderlist">
+                  <NavDropdown.Item>Orders List</NavDropdown.Item>
                 </LinkContainer>
 
                 <NavDropdown.Item onClick={logoutHandler}>

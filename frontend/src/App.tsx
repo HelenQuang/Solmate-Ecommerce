@@ -15,6 +15,7 @@ import PaymentPage from "./pages/PaymentPage";
 import ProfilePage from "./pages/ProfilePage";
 import ShippingPage from "./pages/ShippingPage";
 import OrderPage from "./pages/OrderPage";
+import UserListPage from "./pages/UserListPage";
 
 const App: React.FC = () => {
   const [clientID, setClientID] = useState("");
@@ -62,6 +63,7 @@ const App: React.FC = () => {
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/payment" element={<PaymentPage />} />
               <Route path="/order/:id" element={<OrderPage />} />
+              <Route path="/admin/userlist" element={<UserListPage />} />
             </Routes>
           </main>
           <Footer />
