@@ -1,18 +1,36 @@
 import { useEffect, useState } from "react";
 import { FaTrash, FaEdit, FaPlus } from "react-icons/fa";
-import { Table, Container, Form, Modal, Row, Col } from "react-bootstrap";
+import { Table, Container, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProducts, deleteProduct } from "../actions/productAction";
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+  listProductDetails,
+  updateProduct,
+} from "../actions/productAction";
+import {
+  PRODUCT_CREATE_RESET,
+  PRODUCT_UPDATE_RESET,
+} from "../constants/productConstants";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [show, setShow] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(0);
+  const [image, setImage] = useState([]);
+  const [category, setCategory] = useState("");
+  const [countInStock, setCountInStock] = useState(0);
+  const [description, setDescription] = useState("");
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -24,6 +42,23 @@ const ProductListPage = () => {
     success: successDelete,
   } = productDelete;
 
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+  } = productCreate;
+
+  const productDetails = useSelector((state) => state.productDetails);
+  const {
+    loading: loadingDetails,
+    error: errorDetails,
+    product: productDetailsInfo,
+  } = productDetails;
+
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const { success: successUpdate } = productUpdate;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -33,20 +68,69 @@ const ProductListPage = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, navigate, userInfo, successDelete]);
+  }, [
+    dispatch,
+    navigate,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
 
-  const createProductHandler = () => {
-    // dispatch(createProduct())
-  };
+  useEffect(() => {
+    if (successCreate) {
+      dispatch({ type: PRODUCT_CREATE_RESET });
+      setShowCreateModal(false);
+    }
+  }, [dispatch, successCreate]);
+
+  useEffect(() => {
+    if (successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      setShowUpdateModal(false);
+    } else {
+      setName(productDetailsInfo.name);
+      setPrice(productDetailsInfo.price);
+      setImage(productDetailsInfo.image);
+      setCategory(productDetailsInfo.category);
+      setCountInStock(productDetailsInfo.countInStock);
+      setDescription(productDetailsInfo.description);
+    }
+  }, [dispatch, productDetailsInfo, successUpdate]);
 
   const editHandler = (id) => {
-    // Edit
+    setShowUpdateModal(true);
+    dispatch(listProductDetails(id));
   };
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure to delete this product?")) {
       dispatch(deleteProduct(id));
     }
+  };
+
+  // const uploadFileHandler = () => {};
+
+  const submitCreateHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createProduct(name, price, image, category, countInStock, description)
+    );
+  };
+
+  const submitUpdateHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      updateProduct({
+        _id: productDetailsInfo._id,
+        name,
+        price,
+        image,
+        category,
+        countInStock,
+        description,
+      })
+    );
   };
 
   return (
@@ -56,7 +140,9 @@ const ProductListPage = () => {
       <button
         className="mt-2 mb-3 btn-block"
         style={{ width: "20%" }}
-        onClick={createProductHandler}
+        onClick={() => {
+          setShowCreateModal(true);
+        }}
       >
         <FaPlus /> Create New Product
       </button>
@@ -67,6 +153,9 @@ const ProductListPage = () => {
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
 
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+
       {!loading && products && (
         <Table bordered responsive className="table-sm admin-tables">
           <thead>
@@ -75,6 +164,7 @@ const ProductListPage = () => {
               <th>NAME</th>
               <th>CATEGORY</th>
               <th>PRICE</th>
+              <th>IN STOCK</th>
               <th></th>
             </tr>
           </thead>
@@ -88,6 +178,7 @@ const ProductListPage = () => {
                     product.category.slice(1)}
                 </td>
                 <td>€ {product.price}</td>
+                <td>{product.countInStock}</td>
                 <td>
                   <button
                     variant="light"
@@ -111,59 +202,169 @@ const ProductListPage = () => {
         </Table>
       )}
 
-      {/* <Modal
-        show={show}
+      <Modal
+        show={showCreateModal}
         onHide={() => {
-          setShow(false);
+          setShowCreateModal(false);
         }}
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            <h2 className="modal-title">Edit User Information</h2>
+            <h2 className="modal-title">Create New Product</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={submitCreateHandler}>
+            <Form.Group controlId="name">
+              <Form.Label>Name:</Form.Label>
+              <input
+                className="modal-input"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+            </Form.Group>
+
+            <Form.Group controlId="category">
+              <Form.Label>Category:</Form.Label>
+              <input
+                className="modal-input"
+                type="text"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              ></input>
+            </Form.Group>
+
+            <Form.Group controlId="price">
+              <Form.Label>Price</Form.Label>
+              <input
+                className="modal-input"
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></input>
+            </Form.Group>
+
+            <Form.Group controlId="countInStock">
+              <Form.Label>Count In Stock</Form.Label>
+              <input
+                className="modal-input"
+                type="number"
+                value={countInStock}
+                onChange={(e) => setCountInStock(e.target.value)}
+              ></input>
+            </Form.Group>
+
+            <Form.Group controlId="image">
+              <Form.Label>Images</Form.Label>
+              <input
+                className="modal-input"
+                type="text"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></input>
+            </Form.Group>
+
+            <Form.Group controlId="description">
+              <Form.Label>Description</Form.Label>
+              <input
+                className="modal-input"
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></input>
+            </Form.Group>
+
+            <button className="btn-block" type="submit">
+              Create New Product
+            </button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={showUpdateModal}
+        onHide={() => {
+          setShowUpdateModal(false);
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h2 className="modal-title">Update Product</h2>
             {loadingDetails && <Loader />}
             {errorDetails && <Message variant="danger">{errorDetails}</Message>}
           </Modal.Title>
         </Modal.Header>
-        {userDetailsInfo && (
+        {productDetailsInfo && (
           <Modal.Body>
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitUpdateHandler}>
               <Form.Group controlId="name">
+                <Form.Label>Name:</Form.Label>
                 <input
-                  className="login-input"
-                  type="name"
-                  placeholder="Name"
+                  className="modal-input"
+                  type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 ></input>
               </Form.Group>
 
-              <Form.Group controlId="email">
+              <Form.Group controlId="category">
+                <Form.Label>Category:</Form.Label>
                 <input
-                  className="login-input"
-                  type="email"
-                  placeholder="Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  className="modal-input"
+                  type="text"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
                 ></input>
               </Form.Group>
 
-              <Form.Group controlId="isadmin">
-                <Form.Check
-                  type="checkbox"
-                  label="This user is admin"
-                  checked={isAdmin}
-                  className="my-4"
-                  onChange={(e) => setIsAdmin(e.target.checked)}
-                ></Form.Check>
+              <Form.Group controlId="price">
+                <Form.Label>Price</Form.Label>
+                <input
+                  className="modal-input"
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                ></input>
+              </Form.Group>
+
+              <Form.Group controlId="countInStock">
+                <Form.Label>Count In Stock</Form.Label>
+                <input
+                  className="modal-input"
+                  type="number"
+                  value={countInStock}
+                  onChange={(e) => setCountInStock(e.target.value)}
+                ></input>
+              </Form.Group>
+
+              <Form.Group controlId="image">
+                <Form.Label>Images</Form.Label>
+                <input
+                  className="modal-input"
+                  type="text"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                ></input>
+              </Form.Group>
+
+              <Form.Group controlId="description">
+                <Form.Label>Description</Form.Label>
+                <input
+                  className="modal-input"
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></input>
               </Form.Group>
 
               <button className="btn-block" type="submit">
-                Update User Information
+                Update Product
               </button>
             </Form>
           </Modal.Body>
         )}
-      </Modal> */}
+      </Modal>
     </Container>
   );
 };

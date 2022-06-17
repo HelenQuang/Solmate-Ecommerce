@@ -9,19 +9,30 @@ import {
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getOrderDetails, payOrder } from "../actions/orderAction";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import {
+  getOrderDetails,
+  payOrder,
+  deliverOrder,
+} from "../actions/orderAction";
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from "../constants/orderConstants";
 
 const OrderPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const [{ isPending, isResolved, isRejected }] = usePayPalScriptReducer();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, error, order } = orderDetails;
@@ -29,12 +40,20 @@ const OrderPage = () => {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { success: successDeliver } = orderDeliver;
+
   useEffect(() => {
-    if (!order || order._id !== id || successPay) {
+    if (!userInfo) {
+      navigate("/login");
+    }
+
+    if (!order || order._id !== id || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(id));
     }
-  }, [dispatch, id, order, successPay]);
+  }, [dispatch, id, navigate, order, successDeliver, successPay, userInfo]);
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -50,6 +69,10 @@ const OrderPage = () => {
     return actions.order.capture().then((details) => {
       dispatch(payOrder(id, details));
     });
+  };
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
   };
 
   return (
@@ -196,6 +219,18 @@ const OrderPage = () => {
                 </Col>
                 <Col md={3}>€ {order.totalPrice}</Col>
               </Row>
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <button
+                    type="button"
+                    className="btn-block"
+                    onClick={deliverHandler}
+                  >
+                    MARK AS DELIVERED
+                  </button>
+                )}
             </div>
           </Col>
         </Row>

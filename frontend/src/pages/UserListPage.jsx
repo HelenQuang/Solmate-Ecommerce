@@ -150,7 +150,7 @@ const UserListPage = () => {
               <Form.Group controlId="name">
                 <input
                   className="login-input"
-                  type="name"
+                  type="text"
                   placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -160,7 +160,7 @@ const UserListPage = () => {
               <Form.Group controlId="email">
                 <input
                   className="login-input"
-                  type="email"
+                  type="text"
                   placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

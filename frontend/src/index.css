@@ -97,6 +97,17 @@
   font-size: 2rem;
 }
 
+.modal-input {
+  font-family: "Maven Pro";
+  text-align: left;
+  border: none;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #271a0b21;
+  background-color: var(--bs-body-bg);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
 /* ***************PRODUCT************** */
 .product-img {
   background-color: #fff;
