@@ -192,6 +192,15 @@ option {
   }
 }
 
+.review-title {
+  font-family: "Maven Pro";
+  margin-top: 1rem;
+}
+
+.review-text {
+  font-family: "Maven Pro";
+}
+
 /****************LOGIN************** */
 
 .login {

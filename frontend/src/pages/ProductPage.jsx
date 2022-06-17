@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -19,12 +19,18 @@ import { IoAirplaneOutline, IoDiamondOutline } from "react-icons/io5";
 import { RiLock2Line } from "react-icons/ri";
 
 import Rating from "../components/Rating";
-import { listProductDetails } from "../actions/productAction";
+import {
+  listProductDetails,
+  createProductReview,
+} from "../actions/productAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 
 const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,9 +38,21 @@ const ProductPage = () => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  const {
+    success: successProductReview,
+    error: errorProductReview,
+    loading: loadingProductReview,
+  } = productReviewCreate;
+
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [dispatch, id]);
+
+  const submitHandler = () => {};
 
   return (
     <Container>
@@ -162,7 +180,7 @@ const ProductPage = () => {
                 </ListGroup.Item>
               </ListGroup>
 
-              <ListGroup>
+              <ListGroup className="separator-bottom">
                 <ListGroup.Item>
                   <Tabs
                     defaultActiveKey="story"
@@ -216,6 +234,105 @@ const ProductPage = () => {
                       </p>
                     </Tab>
                   </Tabs>
+                </ListGroup.Item>
+              </ListGroup>
+
+              <h2 className="review-title">Customer Reviews:</h2>
+
+              {product.reviews.length === 0 && (
+                <p className="review-text" style={{ fontStyle: "italic" }}>
+                  Do you want to share your experience with this product? Feel
+                  free to write a review!
+                </p>
+              )}
+
+              <ListGroup variant="flush">
+                {product.reviews.map((review) => (
+                  <ListGroup.Item key={review._id}>
+                    <p
+                      className="review-text mt-3"
+                      style={{ fontSize: "1.2rem" }}
+                    >
+                      <strong>{review.name}</strong>
+                    </p>
+                    <Rating value={review.rating} />
+                    <p className="review-text">
+                      {review.createdAt.substring(0, 10)}
+                    </p>
+                    <p
+                      className="review-text separator-bottom pb-3"
+                      style={{ fontSize: "1.2rem" }}
+                    >
+                      {review.comment}
+                    </p>
+                  </ListGroup.Item>
+                ))}
+
+                <ListGroup.Item>
+                  <h2 className="review-title">Write Your Review:</h2>
+                  {successProductReview && (
+                    <Message variant="success">
+                      Review submitted successfully
+                    </Message>
+                  )}
+                  {loadingProductReview && <Loader />}
+                  {errorProductReview && (
+                    <Message variant="danger">{errorProductReview}</Message>
+                  )}
+                  {userInfo ? (
+                    <Form onSubmit={submitHandler}>
+                      <Form.Group controlId="rating">
+                        <Form.Label
+                          className="review-text mt-3"
+                          style={{ fontSize: "1.2rem" }}
+                        >
+                          Add rating:
+                        </Form.Label>
+                        <Form.Control
+                          as="select"
+                          value={rating}
+                          onChange={(e) => setRating(e.target.value)}
+                          className="review-text"
+                        >
+                          <option value="">Select...</option>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Excellent</option>
+                        </Form.Control>
+                      </Form.Group>
+
+                      <Form.Group controlId="comment">
+                        <Form.Label
+                          className="review-text mt-3"
+                          style={{ fontSize: "1.2rem" }}
+                        >
+                          Write comment:
+                        </Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          row="5"
+                          value={comment}
+                          className="review-text"
+                          onChange={(e) => setComment(e.target.value)}
+                        ></Form.Control>
+                      </Form.Group>
+
+                      <button
+                        disabled={loadingProductReview}
+                        type="submit"
+                        className="btn-block mt-4 mb-5"
+                        style={{ width: "30%" }}
+                      >
+                        Submit
+                      </button>
+                    </Form>
+                  ) : (
+                    <p style={{ fontStyle: "italic" }} className="review-text">
+                      Please <Link to="/login">sign in</Link> to write a review!
+                    </p>
+                  )}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
