@@ -5,7 +5,9 @@ import {
   Container,
   NavDropdown,
   Offcanvas,
+  Form,
 } from "react-bootstrap";
+
 import { LinkContainer } from "react-router-bootstrap";
 import {
   IoSearchOutline,
@@ -19,10 +21,9 @@ import CartOverlays from "./CartOverlays";
 import { logout } from "../actions/userAction";
 
 const Header = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showCart, setShowCart] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   const dispatch = useDispatch();
 
@@ -33,9 +34,7 @@ const Header = () => {
   const { cartItems } = cart;
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
+  const submitSearchHandler = () => {};
 
   return (
     <header>
@@ -60,12 +59,30 @@ const Header = () => {
               </LinkContainer>
             </NavDropdown>
 
-            <LinkContainer to="/lookbook">
-              <Nav.Link>Lookbook</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/discover">
-              <Nav.Link>Discover</Nav.Link>
-            </LinkContainer>
+            {!showSearch && (
+              <button
+                type="button"
+                className="btn-header"
+                onClick={() => setShowSearch(true)}
+              >
+                <IoSearchOutline />
+              </button>
+            )}
+
+            {showSearch && (
+              <Form onSubmit={submitSearchHandler}>
+                <Form.Control
+                  type="text"
+                  name="q"
+                  onChange={(e) => setKeyword(e.target.value)}
+                  placeholder="Search Products..."
+                  className="mr-sm-2 ml-sm-5"
+                ></Form.Control>
+                <button type="submit" variant="outline-success" className="p-2">
+                  Search
+                </button>
+              </Form>
+            )}
           </Nav>
 
           <LinkContainer to="/">
@@ -73,17 +90,17 @@ const Header = () => {
           </LinkContainer>
 
           <Nav className="nav-right">
-            <button type="button" className="btn-header">
-              <IoSearchOutline />
-            </button>
-
             <LinkContainer to="/wishlist">
               <button type="button" className="btn-header">
                 <IoHeartOutline />
               </button>
             </LinkContainer>
 
-            <button type="button" className="btn-header" onClick={handleShow}>
+            <button
+              type="button"
+              className="btn-header"
+              onClick={() => setShowCart(true)}
+            >
               <IoCartOutline />
             </button>
 
@@ -105,7 +122,7 @@ const Header = () => {
                   <NavDropdown.Item>Account</NavDropdown.Item>
                 </LinkContainer>
 
-                <NavDropdown.Item onClick={logoutHandler}>
+                <NavDropdown.Item onClick={() => dispatch(logout())}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
@@ -129,18 +146,18 @@ const Header = () => {
                   <NavDropdown.Item>Orders List</NavDropdown.Item>
                 </LinkContainer>
 
-                <NavDropdown.Item onClick={logoutHandler}>
+                <NavDropdown.Item onClick={() => dispatch(logout())}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
             )}
 
             <Offcanvas
-              show={show}
+              show={showCart}
               placement="end"
               scroll={true}
               backdrop={true}
-              onHide={handleClose}
+              onHide={() => setShowCart(false)}
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title>

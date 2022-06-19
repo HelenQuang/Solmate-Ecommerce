@@ -49,10 +49,25 @@ const ProductPage = () => {
   } = productReviewCreate;
 
   useEffect(() => {
-    dispatch(listProductDetails(id));
-  }, [dispatch, id]);
+    if (successProductReview) {
+      setRating(0);
+      setComment("");
+    }
+    if (!product._id || product._id !== id) {
+      dispatch(listProductDetails(id));
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
+  }, [dispatch, id, product._id, successProductReview]);
 
-  const submitHandler = () => {};
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createProductReview(id, {
+        rating,
+        comment,
+      })
+    );
+  };
 
   return (
     <Container>
@@ -316,6 +331,7 @@ const ProductPage = () => {
                           value={comment}
                           className="review-text"
                           onChange={(e) => setComment(e.target.value)}
+                          style={{ textAlign: "left" }}
                         ></Form.Control>
                       </Form.Group>
 
