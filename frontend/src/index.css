@@ -10,15 +10,6 @@
   border-top: 1px solid #271a0b21;
 }
 
-.nav-right {
-  border-left: 1px solid #271a0b21;
-}
-
-.nav-left {
-  border-right: 1px solid #271a0b21;
-  padding-right: 1rem;
-}
-
 .btn-header {
   position: relative;
   color: #271a0b;
@@ -60,8 +51,9 @@
 .nav-search-form {
   display: flex;
   font-size: 1.4rem;
-  margin-right: 1rem;
-  border-right: 1px solid #271a0b21;
+  /* margin-right: 1rem; */
+  /* width: 50%; */
+  /* border-right: 1px solid #271a0b21; */
 }
 
 .nav-search {
@@ -180,6 +172,11 @@
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
+}
+
+.heart-icon:active,
+.heart-icon:focus {
+  fill: red;
 }
 
 .extra-info {

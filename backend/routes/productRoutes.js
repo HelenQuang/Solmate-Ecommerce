@@ -22,6 +22,7 @@ router
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct);
 router.route("/category/:category").get(getProductsByCategory);
+
 router.route("/id/:id/reviews").post(protect, createProductReview);
 
 export default router;

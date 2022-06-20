@@ -8,6 +8,8 @@ import {
   PRODUCT_CATEGORY_REQUEST,
   PRODUCT_CATEGORY_SUCCESS,
   PRODUCT_CATEGORY_FAIL,
+  PRODUCT_WISHLIST_ADD,
+  PRODUCT_WISHLIST_RESET,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAIL,
@@ -76,6 +78,43 @@ export const productCategoryReducer = (state = { products: [] }, action) => {
       };
     case PRODUCT_CATEGORY_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+const wishlistFromStorage = localStorage.getItem("wishlist")
+  ? JSON.parse(localStorage.getItem("wishlist"))
+  : [];
+
+export const productWishlistReducer = (
+  state = { wishlist: wishlistFromStorage },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_WISHLIST_ADD:
+      const itemInput = action.payload;
+      const existItem = state.wishlist.find((x) => x._id === itemInput._id);
+
+      if (!existItem) {
+        const updatedWishlist = [...state.wishlist, itemInput];
+
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+        return {
+          wishlist: updatedWishlist,
+        };
+      } else {
+        const updatedWishlist = [...state.wishlist].filter(
+          (x) => x._id !== itemInput._id
+        );
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+
+        return {
+          wishlist: updatedWishlist,
+        };
+      }
+    case PRODUCT_WISHLIST_RESET:
+      return { wishlist: [] };
     default:
       return state;
   }
