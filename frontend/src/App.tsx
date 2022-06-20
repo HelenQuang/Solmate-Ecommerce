@@ -48,6 +48,12 @@ const App: React.FC = () => {
           <main>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/search/:keyword" element={<HomePage />} />
+              <Route path="/page/:pageNumber" element={<HomePage />} />
+              <Route
+                path="/search/:keyword/page/:pageNumber"
+                element={<HomePage />}
+              />
               <Route
                 path="/products/category/:category"
                 element={<CategoryPage />}
@@ -67,6 +73,10 @@ const App: React.FC = () => {
               <Route path="/order/:id" element={<OrderPage />} />
               <Route path="/admin/userlist" element={<UserListPage />} />
               <Route path="/admin/productlist" element={<ProductListPage />} />
+              <Route
+                path="/admin/productlist/:pageNumber"
+                element={<ProductListPage />}
+              />
               <Route path="/admin/orderlist" element={<OrderListPage />} />
             </Routes>
           </main>

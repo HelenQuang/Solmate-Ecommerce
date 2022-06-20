@@ -1992,8 +1992,6 @@ progress {
 
   padding: 0.2rem 1.8rem;
 
-  text-align: center;
-
   line-height: 1.5;
   color: var(--bs-body-color);
   background-color: rgba(255, 255, 255, 0.603);
@@ -4881,12 +4879,9 @@ fieldset:disabled .btn {
 .page-link {
   position: relative;
   display: block;
-  color: #7b8ab8;
+  color: #271a0b80;
   text-decoration: none;
-  background-color: #d9e3f1;
-  border: 0 solid #dee2e6;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  background-color: transparent;
 }
 @media (prefers-reduced-motion: reduce) {
   .page-link {
@@ -4895,25 +4890,24 @@ fieldset:disabled .btn {
 }
 .page-link:hover {
   z-index: 2;
-  color: #39456b;
-  background-color: #d9e3f1;
-  border-color: #dee2e6;
+  color: #271a0b;
+  background-color: #f8dfc3;
 }
 .page-link:focus {
   z-index: 3;
-  color: #39456b;
-  background-color: #d9e3f1;
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(55, 141, 252, 0.25);
+  color: #271a0b;
+  background-color: #f8dfc3;
 }
 .page-item:not(:first-child) .page-link {
   margin-left: 0;
 }
 .page-item.active .page-link {
   z-index: 3;
-  color: #485785;
+  color: #271a0b;
   background-color: transparent;
   border-color: transparent;
+  font-weight: 600;
+  border-bottom: 1px solid #271a0b;
 }
 .page-item.disabled .page-link {
   color: #adb6d3;
@@ -4922,7 +4916,7 @@ fieldset:disabled .btn {
   border-color: #dee2e6;
 }
 .page-link {
-  padding: 1rem 0.75rem;
+  padding: 0.75rem 0.75rem 0.3rem 0.75rem;
 }
 .page-item:first-child .page-link {
   border-top-left-radius: 0.25rem;
@@ -11069,13 +11063,13 @@ fieldset:disabled .btn {
   border: none;
 }
 .pagination {
-  background-color: #d9e3f1;
-  border: none;
-  box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
+  background-color: var(--bs-body-bg);
+
+  /* box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2),
     -5px -5px 10px rgba(255, 255, 255, 0.4);
   transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
-  -ms-flex-pack: center;
+  -ms-flex-pack: center; */
   justify-content: center;
   border-radius: 0.25rem;
 }

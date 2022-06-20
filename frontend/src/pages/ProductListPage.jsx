@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import { Table, Container, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import HomePagination from "../components/HomePagination";
 import {
   listProducts,
   deleteProduct,
@@ -19,6 +20,7 @@ import {
 } from "../constants/productConstants";
 
 const ProductListPage = () => {
+  const { pageNumber } = useParams() || 1;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ const ProductListPage = () => {
   const [description, setDescription] = useState("");
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, pages, page } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
   const {
@@ -64,7 +66,7 @@ const ProductListPage = () => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
+      dispatch(listProducts("", pageNumber));
     } else {
       navigate("/login");
     }
@@ -75,6 +77,7 @@ const ProductListPage = () => {
     successDelete,
     successCreate,
     successUpdate,
+    pageNumber,
   ]);
 
   useEffect(() => {
@@ -157,49 +160,53 @@ const ProductListPage = () => {
       {errorCreate && <Message variant="danger">{errorCreate}</Message>}
 
       {!loading && products && (
-        <Table bordered responsive className="table-sm admin-tables">
-          <thead>
-            <tr>
-              <th>PRODUCT ID</th>
-              <th>NAME</th>
-              <th>CATEGORY</th>
-              <th>PRICE</th>
-              <th>IN STOCK</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>
-                  {product.category.charAt(0).toUpperCase() +
-                    product.category.slice(1)}
-                </td>
-                <td>€ {product.price}</td>
-                <td>{product.countInStock}</td>
-                <td>
-                  <button
-                    variant="light"
-                    className="btn-header"
-                    onClick={() => editHandler(product._id)}
-                  >
-                    <FaEdit />
-                  </button>
-
-                  <button
-                    variant="danger"
-                    className="btn-header "
-                    onClick={() => deleteHandler(product._id)}
-                  >
-                    <FaTrash />
-                  </button>
-                </td>
+        <>
+          <Table bordered responsive className="table-sm admin-tables">
+            <thead>
+              <tr>
+                <th>PRODUCT ID</th>
+                <th>NAME</th>
+                <th>CATEGORY</th>
+                <th>PRICE</th>
+                <th>IN STOCK</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>
+                    {product.category.charAt(0).toUpperCase() +
+                      product.category.slice(1)}
+                  </td>
+                  <td>€ {product.price}</td>
+                  <td>{product.countInStock}</td>
+                  <td>
+                    <button
+                      variant="light"
+                      className="btn-header"
+                      onClick={() => editHandler(product._id)}
+                    >
+                      <FaEdit />
+                    </button>
+
+                    <button
+                      variant="danger"
+                      className="btn-header "
+                      onClick={() => deleteHandler(product._id)}
+                    >
+                      <FaTrash />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          <HomePagination pages={pages} page={page} isAdmin={true} />
+        </>
       )}
 
       <Modal

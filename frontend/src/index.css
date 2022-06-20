@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fresca&display=swap");
 
 /* ***************HEADER************** */
 .separator-bottom {
@@ -15,6 +16,7 @@
 
 .nav-left {
   border-right: 1px solid #271a0b21;
+  padding-right: 1rem;
 }
 
 .btn-header {
@@ -53,6 +55,60 @@
   margin-bottom: 0.3rem;
   margin-left: 0.5rem;
   border: none;
+}
+
+.nav-search-form {
+  display: flex;
+  font-size: 1.4rem;
+  margin-right: 1rem;
+  border-right: 1px solid #271a0b21;
+}
+
+.nav-search {
+  background-color: var(--bs-body-bg);
+  border: none;
+  border-bottom: 1px solid #271a0b21;
+  background-color: var(--bs-body-bg);
+  width: 50%;
+}
+
+/* ***************CAROUSEL************** */
+.product-carousel {
+  background-color: #fff;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  border-radius: 3rem;
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-caption h3,
+.carousel-caption p {
+  color: #271a0b;
+}
+
+.product-carousel-img {
+  height: 300px;
+  margin: 5rem auto 2rem auto;
+}
+
+.carousel a {
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .carousel-caption h2 {
+    font-size: 2.5vw;
+  }
 }
 
 /* ***************REUSABLE************** */

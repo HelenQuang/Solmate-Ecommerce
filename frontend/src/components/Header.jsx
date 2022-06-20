@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavDropdown,
-  Offcanvas,
-  Form,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 
 import { LinkContainer } from "react-router-bootstrap";
 import {
@@ -17,13 +10,13 @@ import {
 } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 
-import CartOverlays from "./CartOverlays";
+import SearchBox from "./SearchBox";
+import CartOffCanvas from "./CartOffCanvas";
 import { logout } from "../actions/userAction";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [keyword, setKeyword] = useState("");
 
   const dispatch = useDispatch();
 
@@ -34,13 +27,11 @@ const Header = () => {
   const { cartItems } = cart;
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  const submitSearchHandler = () => {};
-
   return (
     <header>
       <Navbar bg="light" variant="light">
         <Container className="separator-bottom">
-          <Nav className="nav-left">
+          <Nav className="nav-left justify-content-start">
             <NavDropdown title="Shop" id="shop">
               <LinkContainer to="/products/category/bracelets">
                 <NavDropdown.Item>Bracelets</NavDropdown.Item>
@@ -69,27 +60,14 @@ const Header = () => {
               </button>
             )}
 
-            {showSearch && (
-              <Form onSubmit={submitSearchHandler}>
-                <Form.Control
-                  type="text"
-                  name="q"
-                  onChange={(e) => setKeyword(e.target.value)}
-                  placeholder="Search Products..."
-                  className="mr-sm-2 ml-sm-5"
-                ></Form.Control>
-                <button type="submit" variant="outline-success" className="p-2">
-                  Search
-                </button>
-              </Form>
-            )}
+            {showSearch && <SearchBox />}
           </Nav>
 
           <LinkContainer to="/">
             <Navbar.Brand>Solmate</Navbar.Brand>
           </LinkContainer>
 
-          <Nav className="nav-right">
+          <Nav className="nav-right justify-content-end">
             <LinkContainer to="/wishlist">
               <button type="button" className="btn-header">
                 <IoHeartOutline />
@@ -152,22 +130,11 @@ const Header = () => {
               </NavDropdown>
             )}
 
-            <Offcanvas
-              show={showCart}
-              placement="end"
-              scroll={true}
-              backdrop={true}
-              onHide={() => setShowCart(false)}
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title>
-                  <h2>Shopping Cart ({totalItems})</h2>
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <CartOverlays />
-              </Offcanvas.Body>
-            </Offcanvas>
+            <CartOffCanvas
+              showCart={showCart}
+              setShowCart={setShowCart}
+              totalItems={totalItems}
+            />
           </Nav>
         </Container>
       </Navbar>

@@ -25,6 +25,7 @@ import {
 } from "../actions/productAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 
 const ProductPage = () => {
@@ -75,6 +76,7 @@ const ProductPage = () => {
       {!loading && error && <Message variant="danger">{error}</Message>}
       {!loading && product._id && (
         <>
+          <Meta title={product.name} />
           <Breadcrumb>
             <LinkContainer to="/">
               <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -89,7 +91,6 @@ const ProductPage = () => {
 
             <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
           </Breadcrumb>
-
           <Row>
             <Col md={5}>
               <Carousel>
