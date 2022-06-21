@@ -13,13 +13,13 @@
     "serve": "^13.0.2"
   },
   "scripts": {
-    "start": "node backend/server",
+    "build": "cd frontend && npm install && npm run build",
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "data:destroy": "node backend/seeder -d"
   },
   "devDependencies": {
     "concurrently": "^7.2.1",
