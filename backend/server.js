@@ -44,6 +44,11 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+console.log(
+  "Testing",
+  path.resolve(__dirname, "frontend", "build", "index.html")
+);
+
 app.use(notFound);
 app.use(errorHandler);
 
