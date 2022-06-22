@@ -4461,7 +4461,6 @@ fieldset:disabled .btn {
 .navbar-expand .navbar-nav {
   -ms-flex-direction: row;
   flex-direction: row;
-  width: 30rem;
 }
 .navbar-expand .navbar-nav .dropdown-menu {
   position: absolute;
