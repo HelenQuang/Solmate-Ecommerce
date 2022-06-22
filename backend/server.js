@@ -42,11 +42,6 @@ app.get("/", (req, res) => {
   res.send("API is running....");
 });
 
-console.log(
-  "Testing",
-  path.resolve(__dirname, "frontend", "build", "index.html")
-);
-
 app.use(notFound);
 app.use(errorHandler);
 
