@@ -9,6 +9,8 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 
+const PORT = process.env.PORT || 5000;
+
 dotenv.config();
 
 connectDB();
@@ -30,13 +32,15 @@ app.get("/api/config/paypal", (req, res) =>
 );
 
 const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
+if (
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "staging"
+) {
+  app.use(express.static("/frontend/build"));
 
   app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+    res.sendFile(path.join(__dirname, "frontend/build/index.html"))
   );
 } else {
   app.get("/", (req, res) => {
@@ -51,8 +55,6 @@ console.log(
 
 app.use(notFound);
 app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
 
 app.listen(
   PORT,
