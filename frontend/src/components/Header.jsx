@@ -31,7 +31,7 @@ const Header = () => {
     <header>
       <Navbar bg="light" variant="light">
         <Container className="separator-bottom">
-          <Nav className="nav-left justify-content-start">
+          <Nav className="justify-content-start">
             <NavDropdown title="Shop" id="shop">
               <LinkContainer to="/products/category/bracelets">
                 <NavDropdown.Item>Bracelets</NavDropdown.Item>
@@ -67,7 +67,7 @@ const Header = () => {
             <Navbar.Brand>Solmate</Navbar.Brand>
           </LinkContainer>
 
-          <Nav className="nav-right justify-content-end">
+          <Nav className="justify-content-end">
             <LinkContainer to="/wishlist">
               <button type="button" className="btn-header">
                 <IoHeartOutline />

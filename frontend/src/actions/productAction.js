@@ -10,6 +10,7 @@ import {
   PRODUCT_CATEGORY_REQUEST,
   PRODUCT_CATEGORY_SUCCESS,
   PRODUCT_CATEGORY_FAIL,
+  PRODUCT_WISHLIST_ADD,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAIL,
@@ -87,6 +88,15 @@ export const listProductCategory = (category) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const addProductToWishlist = (product) => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_WISHLIST_ADD,
+    payload: {
+      ...product,
+    },
+  });
 };
 
 export const deleteProduct = (id) => async (dispatch, getState) => {

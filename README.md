@@ -45,6 +45,7 @@
 
 ## Sample User Logins:
 
+```
 admin@example.com (Admin)
 123456
 
@@ -53,6 +54,7 @@ helen@example.com (Customer)
 
 ha@example.com (Customer)
 123456
+```
 
 ## DEMO Link:
 

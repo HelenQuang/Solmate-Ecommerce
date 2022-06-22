@@ -22,6 +22,7 @@ import Rating from "../components/Rating";
 import {
   listProductDetails,
   createProductReview,
+  addProductToWishlist,
 } from "../actions/productAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -110,7 +111,12 @@ const ProductPage = () => {
               <ListGroup variant="flush" className="separator-bottom">
                 <ListGroup.Item>
                   <h1>{product.name}</h1>
-                  <BsSuitHeart className="heart-icon" />
+                  <BsSuitHeart
+                    className="heart-icon"
+                    onClick={() => {
+                      dispatch(addProductToWishlist(product));
+                    }}
+                  />
                 </ListGroup.Item>
 
                 <ListGroup.Item>

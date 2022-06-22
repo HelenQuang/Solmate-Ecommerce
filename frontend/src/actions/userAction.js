@@ -27,6 +27,7 @@ import {
   USER_UPDATE_REQUEST,
 } from "../constants/userConstants";
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
+import { PRODUCT_WISHLIST_RESET } from "../constants/productConstants";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -91,10 +92,14 @@ export const register = (name, email, password) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   localStorage.removeItem("userInfo");
+  localStorage.removeItem("__paypal_storage__");
+  localStorage.removeItem("wishlist");
+  localStorage.removeItem("cartItems");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: ORDER_LIST_MY_RESET });
   dispatch({ type: USER_LIST_RESET });
+  dispatch({ type: PRODUCT_WISHLIST_RESET });
 };
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
