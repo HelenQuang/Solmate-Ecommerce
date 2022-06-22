@@ -9,78 +9,41 @@
 - Top products carousel
 - Product pagination
 - Product search feature
-- User log in, register
+
+- User log in, register, logout
 - User profile with order history
+- User wishlist
+- User checkout process after logged in (cart, total, shipping info, shipping method, payment method, etc)
+- PayPal / credit card integration
+
 - Admin product management
 - Admin user management
 - Admin order management
 - Admin mark orders as delivered option
-- Checkout process (shipping info, shipping method, payment method, etc)
-- PayPal / credit card integration
 - Database seeder (products, users, orders)
 
-## Usage:
+## Technologies:
 
-### ES Modules in Node
+- Mongo DB
+- Express JS
+- Node JS
+- React JS
+- Redux
+- [React Bootstrap 5](https://react-bootstrap.github.io/getting-started/introduction/)
+- [React Roter DOM v6](https://reactrouter.com/docs/en/v6/getting-started/overview)
+- [React Router Bootstrap](https://www.npmjs.com/package/react-router-bootstrap)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
+- MongoDB Atlas and Compass
+- [Mongoose](https://www.npmjs.com/package/mongoose)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Express Async Handler](https://www.npmjs.com/package/express-async-handler)
+- Postman
+- [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken)
+- [React Paypal](https://www.npmjs.com/package/@paypal/react-paypal-js)
+- [React Helmet](https://www.npmjs.com/package/react-helmet)
 
-We use ECMAScript Modules in the backend in this project. Be sure to have at least Node v14.6+ or you will need to add the "--experimental-modules" flag.
-
-Also, when importing a file (not a package), be sure to add .js at the end or you will get a "module not found" error
-
-You can also install and setup Babel if you would like
-
-### Env Variables
-
-Create a .env file in then root and add the following
-
-```
-NODE_ENV = development
-PORT = 5000
-MONGO_URI = your mongodb uri
-JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
-```
-
-### Install Dependencies (frontend & backend)
-
-```
-npm install
-cd frontend
-npm install
-```
-
-### Run
-
-```
-# Run frontend (:3000) & backend (:5000)
-npm run dev
-
-# Run backend only
-npm run server
-```
-
-## Build & Deploy
-
-```
-# Create frontend prod build
-cd frontend
-npm run build
-```
-
-### Seed Database
-
-You can use the following commands to seed the database with some sample users and products as well as destroy all data
-
-```
-# Import data
-npm run data:import
-
-# Destroy data
-npm run data:destroy
-```
-
-```
-Sample User Logins
+## Sample User Logins:
 
 admin@example.com (Admin)
 123456
@@ -90,6 +53,7 @@ helen@example.com (Customer)
 
 ha@example.com (Customer)
 123456
-```
 
-## DEMO:
+## DEMO Link:
+
+https://solmate-ecommerce-helen.herokuapp.com/
