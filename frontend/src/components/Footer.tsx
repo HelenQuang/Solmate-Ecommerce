@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
               <img
                 src="https://img.icons8.com/serif/32/undefined/experimental-right-serif.png"
                 alt="right-arrow"
-                className="footer-arrow-icon ml-2"
+                className="footer-arrow-icon"
               />
             </div>
           </Col>

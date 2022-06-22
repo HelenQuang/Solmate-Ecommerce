@@ -13,7 +13,7 @@ import {
   Container,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { BsSuitHeart } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 import { TbRotateClockwise } from "react-icons/tb";
 import { IoAirplaneOutline, IoDiamondOutline } from "react-icons/io5";
 import { RiLock2Line } from "react-icons/ri";
@@ -33,6 +33,8 @@ const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [heartColor, setHeartColor] = useState("");
+
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,6 +44,10 @@ const ProductPage = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const productWishlist = useSelector((state) => state.productWishlist);
+  const { wishlist } = productWishlist;
+  console.log(wishlist);
 
   const productReviewCreate = useSelector((state) => state.productReviewCreate);
   const {
@@ -59,7 +65,19 @@ const ProductPage = () => {
       dispatch(listProductDetails(id));
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
-  }, [dispatch, id, product._id, successProductReview]);
+
+    const existProduct = wishlist.find((x) => x._id === product._id);
+
+    if (existProduct) {
+      setHeartColor("red");
+    } else {
+      setHeartColor("black");
+    }
+  }, [dispatch, id, product._id, successProductReview, wishlist]);
+
+  const likedHandler = () => {
+    dispatch(addProductToWishlist(product));
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -111,11 +129,10 @@ const ProductPage = () => {
               <ListGroup variant="flush" className="separator-bottom">
                 <ListGroup.Item>
                   <h1>{product.name}</h1>
-                  <BsSuitHeart
+                  <FaHeart
                     className="heart-icon"
-                    onClick={() => {
-                      dispatch(addProductToWishlist(product));
-                    }}
+                    style={{ fill: `${heartColor}` }}
+                    onClick={likedHandler}
                   />
                 </ListGroup.Item>
 

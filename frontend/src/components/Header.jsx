@@ -31,7 +31,7 @@ const Header = () => {
     <header>
       <Navbar bg="light" variant="light">
         <Container className="separator-bottom">
-          <Nav className="justify-content-start">
+          <Nav>
             <NavDropdown title="Shop" id="shop">
               <LinkContainer to="/products/category/bracelets">
                 <NavDropdown.Item>Bracelets</NavDropdown.Item>

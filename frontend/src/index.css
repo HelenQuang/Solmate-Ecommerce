@@ -171,11 +171,6 @@
   cursor: pointer;
 }
 
-.heart-icon:active,
-.heart-icon:focus {
-  fill: red;
-}
-
 .extra-info {
   font-family: "Maven Pro";
   list-style: none;
@@ -496,6 +491,7 @@ footer {
 
 .footer-arrow-icon {
   cursor: pointer;
+  margin-left: 1rem;
 }
 
 .footer-cta {

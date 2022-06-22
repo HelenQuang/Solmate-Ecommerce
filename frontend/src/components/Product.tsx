@@ -20,12 +20,10 @@ const Product: React.FC<{ product: ProductInterface }> = ({ product }) => {
             <h5>€{product.price}</h5>
           </Card.Subtitle>
           <Card.Subtitle className="text-muted ">
-            <h6>
-              <Rating
-                value={product.rating}
-                text={`${product.numReviews} reviews`}
-              />
-            </h6>
+            <Rating
+              value={product.rating}
+              text={`${product.numReviews} reviews`}
+            />
           </Card.Subtitle>
         </Link>
       </Card.Body>
