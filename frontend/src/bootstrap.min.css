@@ -4919,14 +4919,14 @@ fieldset:disabled .btn {
 .page-link {
   padding: 0.75rem 0.75rem 0.3rem 0.75rem;
 }
-.page-item:first-child .page-link {
+/* .page-item:first-child .page-link {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
 .page-item:last-child .page-link {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
-}
+} */
 .pagination-lg .page-link {
   padding: 1.5rem 1.5rem;
   font-size: 1.25rem;
@@ -11270,11 +11270,11 @@ fieldset:disabled .btn {
 .card h6 {
   color: inherit;
 }
-.list-group {
-  /* background-color: #fff; */
-  /* box-shadow: inset 2px 2px 6px rgba(109, 114, 121, 0.2),
-    inset -3px -2px 4px rgba(255, 255, 255, 0.2); */
-}
+/* .list-group {
+  background-color: #fff;
+  box-shadow: inset 2px 2px 6px rgba(109, 114, 121, 0.2),
+    inset -3px -2px 4px rgba(255, 255, 255, 0.2);
+} */
 .list-group-item {
   background-color: transparent;
 }

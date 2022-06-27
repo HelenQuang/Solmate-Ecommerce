@@ -28,6 +28,7 @@
 - Express JS
 - Node JS
 - React JS
+- Typescript
 - Redux
 - [React Bootstrap 5](https://react-bootstrap.github.io/getting-started/introduction/)
 - [React Roter DOM v6](https://reactrouter.com/docs/en/v6/getting-started/overview)

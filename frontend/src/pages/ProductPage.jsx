@@ -47,7 +47,6 @@ const ProductPage = () => {
 
   const productWishlist = useSelector((state) => state.productWishlist);
   const { wishlist } = productWishlist;
-  console.log(wishlist);
 
   const productReviewCreate = useSelector((state) => state.productReviewCreate);
   const {

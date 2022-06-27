@@ -5,6 +5,8 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+
 import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
 import ProductPage from "./pages/ProductPage";
@@ -46,39 +48,44 @@ const App: React.FC = () => {
         <PayPalScriptProvider options={initialOptions}>
           <Header />
           <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/search/:keyword" element={<HomePage />} />
-              <Route path="/page/:pageNumber" element={<HomePage />} />
-              <Route
-                path="/search/:keyword/page/:pageNumber"
-                element={<HomePage />}
-              />
-              <Route
-                path="/products/category/:category"
-                element={<CategoryPage />}
-              />
-              <Route path="/products/id/:id" element={<ProductPage />} />
-              <Route
-                path="/products/category/:category/products/id/:id"
-                element={<ProductPage />}
-              />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/cart/:id" element={<CartPage />} />
-              <Route path="/login" element={<LogInPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/shipping" element={<ShippingPage />} />
-              <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="/payment" element={<PaymentPage />} />
-              <Route path="/order/:id" element={<OrderPage />} />
-              <Route path="/admin/userlist" element={<UserListPage />} />
-              <Route path="/admin/productlist" element={<ProductListPage />} />
-              <Route
-                path="/admin/productlist/:pageNumber"
-                element={<ProductListPage />}
-              />
-              <Route path="/admin/orderlist" element={<OrderListPage />} />
-            </Routes>
+            <ScrollToTop>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/search/:keyword" element={<HomePage />} />
+                <Route path="/page/:pageNumber" element={<HomePage />} />
+                <Route
+                  path="/search/:keyword/page/:pageNumber"
+                  element={<HomePage />}
+                />
+                <Route
+                  path="/products/category/:category"
+                  element={<CategoryPage />}
+                />
+                <Route path="/products/id/:id" element={<ProductPage />} />
+                <Route
+                  path="/products/category/:category/products/id/:id"
+                  element={<ProductPage />}
+                />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/cart/:id" element={<CartPage />} />
+                <Route path="/login" element={<LogInPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/shipping" element={<ShippingPage />} />
+                <Route path="/wishlist" element={<WishlistPage />} />
+                <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/order/:id" element={<OrderPage />} />
+                <Route path="/admin/userlist" element={<UserListPage />} />
+                <Route
+                  path="/admin/productlist"
+                  element={<ProductListPage />}
+                />
+                <Route
+                  path="/admin/productlist/:pageNumber"
+                  element={<ProductListPage />}
+                />
+                <Route path="/admin/orderlist" element={<OrderListPage />} />
+              </Routes>
+            </ScrollToTop>
           </main>
           <Footer />
         </PayPalScriptProvider>

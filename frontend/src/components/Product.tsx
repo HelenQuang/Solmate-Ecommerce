@@ -9,7 +9,7 @@ const Product: React.FC<{ product: ProductInterface }> = ({ product }) => {
   return (
     <Card className="my-3 p-3 rounded">
       <LinkContainer to={`/products/id/${product._id}`}>
-        <Card.Img src={product.image[0]} variant="top" />
+        <Card.Img src={product.image[0]} variant="top" alt={product.name} />
       </LinkContainer>
       <Card.Body>
         <Link to={`/products/id/${product._id}`}>
@@ -22,7 +22,11 @@ const Product: React.FC<{ product: ProductInterface }> = ({ product }) => {
           <Card.Subtitle className="text-muted ">
             <Rating
               value={product.rating}
-              text={`${product.numReviews} reviews`}
+              text={
+                product.numReviews === 1
+                  ? `${product.numReviews} review`
+                  : `${product.numReviews} reviews`
+              }
             />
           </Card.Subtitle>
         </Link>

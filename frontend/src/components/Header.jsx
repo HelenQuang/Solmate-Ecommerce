@@ -54,6 +54,7 @@ const Header = () => {
               <button
                 type="button"
                 className="btn-header"
+                aria-label="Search"
                 onClick={() => setShowSearch(true)}
               >
                 <IoSearchOutline />
@@ -69,7 +70,11 @@ const Header = () => {
 
           <Nav className="justify-content-end">
             <LinkContainer to="/wishlist">
-              <button type="button" className="btn-header">
+              <button
+                type="button"
+                className="btn-header"
+                aria-label="Wishlist"
+              >
                 <IoHeartOutline />
               </button>
             </LinkContainer>
@@ -77,6 +82,7 @@ const Header = () => {
             <button
               type="button"
               className="btn-header"
+              aria-label="Cart"
               onClick={() => setShowCart(true)}
             >
               <IoCartOutline />
@@ -84,7 +90,7 @@ const Header = () => {
 
             {!userInfo && (
               <LinkContainer to="/login">
-                <button type="button" className="btn-header">
+                <button type="button" className="btn-header" aria-label="User">
                   <IoPersonOutline />
                 </button>
               </LinkContainer>
