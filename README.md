@@ -56,6 +56,20 @@ helen@example.com (Customer)
 ha@example.com (Customer)
 123456
 ```
+<<<<<<< HEAD
+=======
+
+## DEMO:
+
+https://user-images.githubusercontent.com/94285120/175123086-cb3e7298-d741-409f-8b3a-1f0a025e324b.mp4
+
+https://user-images.githubusercontent.com/94285120/175123105-e62e6f52-9461-408c-addb-a35b8059a28c.mp4
+
+https://user-images.githubusercontent.com/94285120/175123126-3e4183da-3117-4583-94c0-2cb32233752c.mp4
+
+https://user-images.githubusercontent.com/94285120/175123141-6bda49b4-bcdd-4045-9a5f-a49687343d6a.mp4
+
+>>>>>>> 3904d61979afa11b050a80925114212fc29aca9b
 
 ## DEMO Link:
 
