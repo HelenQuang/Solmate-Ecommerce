@@ -69,4 +69,4 @@ https://user-images.githubusercontent.com/94285120/175123141-6bda49b4-bcdd-4045-
 
 ## DEMO Link:
 
-https://solmate-ecommerce-helen.herokuapp.com/
+https://solmate-ecommerce-helen.onrender.com/
